@@ -11,29 +11,37 @@
         android:id="@+id/subtract"
         android:layout_width="411dp"
         android:layout_height="411dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:layout_marginTop="44dp"
+        android:layout_marginTop="40dp"
         android:background="@drawable/subtract"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0" />
 
-    <View
+    <ImageView
         android:id="@+id/rectangle_7"
         android:layout_width="62dp"
         android:layout_height="734dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
-        android:background="@drawable/pasek_boczny"
+        android:contentDescription="@string/app_name"
+        android:visibility="visible"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/pasek_boczny"
+        tools:srcCompat="@color/code"
+        tools:visibility="visible" />
 
     <View
         android:id="@+id/pasek_narze"
         android:layout_width="411dp"
         android:layout_height="103dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/pasek_narze"
         app:layout_constraintEnd_toEndOf="parent"
@@ -44,10 +52,41 @@
         android:id="@+id/rectangle_6"
         android:layout_width="71dp"
         android:layout_height="97dp"
-        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
         android:layout_alignParentTop="true"
         android:background="@drawable/rectangle_code"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent" />
+
+    <View
+        android:id="@+id/vector"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="15dp"
+        android:background="@drawable/menu_svg"
+        android:elevation="10dp"
+        app:layout_constraintBottom_toTopOf="@+id/rectangle_6"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_7"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" tools:targetApi="lollipop" />
+
+    <View
+        android:id="@+id/vector2"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/help_svg"
+        app:layout_constraintBottom_toTopOf="@+id/vector"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_7"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
