@@ -93,91 +93,81 @@
         android:id="@+id/przycisk1"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/ic_przycisk"
-        app:layout_constraintBottom_toTopOf="@+id/przycisk4"
-        app:layout_constraintEnd_toStartOf="@+id/przycisk6" />
-
-    <View
-        android:id="@+id/przycisk2"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="30dp"
-        android:background="@drawable/ic_przycisk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/rectangle_7" />
+        app:layout_constraintEnd_toStartOf="@+id/przycisk6"
+        app:layout_constraintTop_toBottomOf="@+id/przycisk5" />
 
     <View
         android:id="@+id/przycisk3"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/ic_przycisk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/przycisk2" />
+        app:layout_constraintEnd_toStartOf="@+id/rectangle_7"
+        app:layout_constraintTop_toBottomOf="@+id/przycisk7" />
 
     <View
         android:id="@+id/przycisk4"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="30dp"
         android:background="@drawable/ic_przycisk"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/przycisk3" />
+        app:layout_constraintEnd_toStartOf="@+id/przycisk3"
+        app:layout_constraintTop_toBottomOf="@+id/przycisk9" />
 
     <View
         android:id="@+id/przycisk5"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/ic_przycisk"
-        app:layout_constraintBottom_toTopOf="@+id/przycisk1"
-        app:layout_constraintEnd_toStartOf="@+id/przycisk8" />
+        app:layout_constraintEnd_toStartOf="@+id/przycisk8"
+        app:layout_constraintTop_toBottomOf="@+id/subtract" />
 
     <View
         android:id="@+id/przycisk6"
         android:layout_width="60dp"
         android:layout_height="60dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
         android:background="@drawable/ic_przycisk"
-        app:layout_constraintBottom_toTopOf="@+id/przycisk3"
-        app:layout_constraintEnd_toStartOf="@+id/przycisk7" />
+        app:layout_constraintEnd_toStartOf="@+id/przycisk4"
+        app:layout_constraintTop_toBottomOf="@+id/przycisk8" />
 
     <View
         android:id="@+id/przycisk7"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/ic_przycisk"
-        app:layout_constraintBottom_toTopOf="@+id/przycisk2"
-        app:layout_constraintEnd_toStartOf="@+id/rectangle_7" />
+        app:layout_constraintEnd_toStartOf="@+id/rectangle_7"
+        app:layout_constraintTop_toBottomOf="@+id/subtract" />
 
     <View
         android:id="@+id/przycisk8"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="20dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="24dp"
         android:background="@drawable/ic_przycisk"
-        app:layout_constraintBottom_toTopOf="@+id/przycisk6"
-        app:layout_constraintEnd_toStartOf="@+id/przycisk9" />
+        app:layout_constraintEnd_toStartOf="@+id/przycisk9"
+        app:layout_constraintTop_toBottomOf="@+id/subtract" />
 
     <View
         android:id="@+id/przycisk9"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
         android:background="@drawable/ic_przycisk"
-        app:layout_constraintBottom_toTopOf="@+id/przycisk7"
-        app:layout_constraintEnd_toStartOf="@+id/rectangle_7" />
+        app:layout_constraintEnd_toStartOf="@+id/przycisk7"
+        app:layout_constraintTop_toBottomOf="@+id/subtract" />
 
     <View
         android:id="@+id/nozyczki"
@@ -198,5 +188,105 @@
         app:layout_constraintEnd_toEndOf="@+id/przycisk3"
         app:layout_constraintStart_toStartOf="@+id/przycisk3"
         app:layout_constraintTop_toTopOf="@+id/przycisk3" />
+
+    <View
+        android:id="@+id/strzalka_prawo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/strzalka_prawo"
+        app:layout_constraintBottom_toBottomOf="@+id/przycisk1"
+        app:layout_constraintEnd_toEndOf="@+id/przycisk1"
+        app:layout_constraintStart_toStartOf="@+id/przycisk1"
+        app:layout_constraintTop_toTopOf="@+id/przycisk1" />
+
+    <View
+        android:id="@+id/strzalka_lewo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:background="@drawable/strzalka_lewo"
+        app:layout_constraintBottom_toBottomOf="@+id/przycisk6"
+        app:layout_constraintEnd_toEndOf="@+id/przycisk6"
+        app:layout_constraintStart_toStartOf="@+id/przycisk6"
+        app:layout_constraintTop_toTopOf="@+id/przycisk6" />
+
+    <View
+        android:id="@+id/strzalka_skok"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:background="@drawable/strzalka_skok"
+        app:layout_constraintBottom_toBottomOf="@+id/przycisk7"
+        app:layout_constraintEnd_toEndOf="@+id/przycisk7"
+        app:layout_constraintStart_toStartOf="@+id/przycisk7"
+        app:layout_constraintTop_toTopOf="@+id/przycisk7" />
+
+    <View
+        android:id="@+id/krok1"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/krok1"
+        app:layout_constraintBottom_toBottomOf="@+id/przycisk5"
+        app:layout_constraintEnd_toEndOf="@+id/przycisk5"
+        app:layout_constraintStart_toStartOf="@+id/przycisk5"
+        app:layout_constraintTop_toTopOf="@+id/przycisk5" />
+
+    <View
+        android:id="@+id/krok3"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/krok3"
+        app:layout_constraintBottom_toBottomOf="@+id/przycisk8"
+        app:layout_constraintEnd_toEndOf="@+id/przycisk8"
+        app:layout_constraintStart_toStartOf="@+id/przycisk8"
+        app:layout_constraintTop_toTopOf="@+id/przycisk8" />
+
+    <View
+        android:id="@+id/krok4"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/krok4"
+        app:layout_constraintBottom_toBottomOf="@+id/przycisk9"
+        app:layout_constraintEnd_toEndOf="@+id/przycisk9"
+        app:layout_constraintStart_toStartOf="@+id/przycisk9"
+        app:layout_constraintTop_toTopOf="@+id/przycisk9" />
+
+    <View
+        android:id="@+id/przycisk10"
+        android:layout_width="70dp"
+        android:layout_height="70dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="10dp"
+        android:background="@drawable/ic_przycisk"
+        app:layout_constraintEnd_toStartOf="@+id/przycisk11"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/przycisk11"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="15dp"
+        android:background="@drawable/ic_przycisk2"
+        app:layout_constraintEnd_toEndOf="@+id/rectangle_7"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/play"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:background="@drawable/play"
+        app:layout_constraintBottom_toBottomOf="@+id/przycisk10"
+        app:layout_constraintEnd_toEndOf="@+id/przycisk10"
+        app:layout_constraintStart_toStartOf="@+id/przycisk10"
+        app:layout_constraintTop_toTopOf="@+id/przycisk10" />
+
+    <View
+        android:id="@+id/replay"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:background="@drawable/ic_replay"
+        app:layout_constraintBottom_toBottomOf="@+id/przycisk11"
+        app:layout_constraintEnd_toEndOf="@+id/przycisk11"
+        app:layout_constraintStart_toStartOf="@+id/przycisk11"
+        app:layout_constraintTop_toTopOf="@+id/przycisk11" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
