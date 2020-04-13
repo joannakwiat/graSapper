@@ -289,4 +289,49 @@
         app:layout_constraintStart_toStartOf="@+id/przycisk11"
         app:layout_constraintTop_toTopOf="@+id/przycisk11" />
 
+
+
+    <Button
+        android:id="@+id/button2"
+        android:layout_width="82dp"
+        android:layout_height="116dp"
+        android:alpha="0"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_6"
+        app:layout_constraintTop_toTopOf="@+id/rectangle_6" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="58dp"
+        android:layout_height="39dp"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="10dp"
+        android:fontFamily="monospace"
+        android:text="@string/show_code"
+        android:textAlignment="center"
+        android:textColor="#ffffff"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_6"
+        app:layout_constraintTop_toTopOf="@+id/rectangle_6" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="50dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="12dp"
+        android:text="@string/_1_jump"
+        android:textColor="@color/code"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_6"
+        app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+    <TextView
+        android:id="@+id/textView5"
+        android:layout_width="50dp"
+        android:layout_height="14dp"
+        android:layout_marginStart="12dp"
+        android:text="@string/_2_go"
+        android:textColor="@color/code"
+        android:textSize="12sp"
+        app:layout_constraintStart_toStartOf="@+id/rectangle_6"
+        app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

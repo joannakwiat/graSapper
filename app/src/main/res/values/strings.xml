@@ -3,4 +3,20 @@
     <string name="nasz_pierwszy_program">Nasz pierwszy program!</string>
     <string name="code">CODE</string>
     <string name="sapper">SAPPER</string>
+    <string name="show_code">Show Code</string>
+    <string name="_1">1.</string>
+    <string name="_2">2.</string>
+    <string name="_1_jump">1. jump...</string>
+    <string name="_2_go">2. go...</string>
+    <string name="your_code_will_be_shown_here">Your code will be shown here</string>
+    <string name="_7">7.</string>
+    <string name="_3">3.</string>
+    <string name="_4">4.</string>
+    <string name="_5">5.</string>
+    <string name="_6">6.</string>
+    <string name="_9">9.</string>
+    <string name="_10">10.</string>
+    <string name="_8">8.</string>
+    <string name="start_program">start program</string>
+    <string name="srednik">;</string>
 </resources>
