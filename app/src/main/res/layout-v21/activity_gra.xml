@@ -73,10 +73,11 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" tools:targetApi="lollipop" />
+        app:layout_constraintVertical_bias="1.0" tools:targetApi="lollipop"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <Button
-        android:id="@+id/vector2"
+        android:id="@+id/help"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginEnd="6dp"
@@ -87,7 +88,8 @@
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintVertical_bias="1.0"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <View
         android:id="@+id/przycisk1"
@@ -297,7 +299,8 @@
         android:layout_height="116dp"
         android:alpha="0"
         app:layout_constraintStart_toStartOf="@+id/rectangle_6"
-        app:layout_constraintTop_toTopOf="@+id/rectangle_6" />
+        app:layout_constraintTop_toTopOf="@+id/rectangle_6"
+        style="?android:attr/borderlessButtonStyle"/>
 
     <TextView
         android:id="@+id/textView"

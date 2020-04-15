@@ -12,6 +12,7 @@ import android.widget.Button;
 public class Gra extends AppCompatActivity {
     private Button button;
     private Button button2;
+    private Button help_button;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -34,7 +35,13 @@ public class Gra extends AppCompatActivity {
                 openMenu();
             }
         });
-
+        help_button = (Button) findViewById(R.id.help);
+        help_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openHelp();
+            }
+        });
     }
     public void openOknoKodu(){
         Intent intent = new Intent(this, Okno_kodu.class);
@@ -44,6 +51,12 @@ public class Gra extends AppCompatActivity {
 
     public void openMenu(){
         Intent intent = new Intent(this, Menu.class);
+        startActivity(intent);
+        overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+    }
+
+    public void openHelp(){
+        Intent intent = new Intent(this, Help.class);
         startActivity(intent);
         overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
     }

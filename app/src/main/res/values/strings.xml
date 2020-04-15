@@ -20,7 +20,14 @@
     <string name="start_program">start program</string>
     <string name="srednik">;</string>
     <string name="menu">Menu</string>
-    <string name="back_to_game">Back to game</string>
-    <string name="save_and_exit">Save and exit</string>
-    <string name="exit">Exit</string>
+    <string name="back_to_game"> Back to game </string>
+    <string name="save_and_exit"> Save and exit </string>
+    <string name="exit"> Exit </string>
+    <string name="help">CodeSapper</string>
+    <string name="help_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. In lacinia lorem semper dolor molestie blandit.
+        Nullam bibendum lectus quis tempus laoreet. Aliquam aliquet aliquet enim in ullamcorper. Praesent sed viverra risus, nec faucibus diam. Integer semper ligula a ornare laoreet. Curabitur fermentum quam sed nulla luctus venenatis. Donec in sapien in dolor auctor molestie vitae at sapien. Morbi quis porttitor mauris.
+
+Aenean ac nibh vitae orci tempus laoreet. Duis quis purus hendrerit, sagittis mauris nec, pretium orci.
+        Praesent euismod facilisis massa, ac ultrices dui luctus efficitur. Phasellus vulputate ornare risus sodales sodales. Curabitur bibendum fermentum facilisis. In feugiat purus in enim tincidunt eleifend. Nullam feugiat vitae elit in mattis. Donec sit amet eros mi. In dui quam, ultrices a lobortis quis, iaculis eget nisl. Vivamus varius dictum massa eu dignissim.
+    Curabitur finibus metus tellus, sodales aliquam odio ullamcorper eget. Nullam eget risus consectetur, tincidunt erat vel, bibendum urna. In vel erat tincidunt, molestie ligula eu, consectetur erat. Duis sed risus non enim porta lobortis. Donec eu pretium dolor. Nunc ac consequat libero, sed commodo dui.</string>
 </resources>
