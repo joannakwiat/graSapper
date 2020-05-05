@@ -1,11 +1,7 @@
 package com.example.grasapper;
-
 import android.content.Context;
 import android.content.res.Resources;
-import android.graphics.Bitmap;
 import android.graphics.Canvas;
-import android.graphics.Color;
-import android.graphics.Paint;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.text.StaticLayout;
@@ -66,5 +62,19 @@ public class Text
         canvas.translate(x,y);
         staticLayout.draw(canvas);
         canvas.restore();
+    }
+}
+
+class ScrollText extends Text
+{
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    ScrollText(Context context, String text, int x, int y, int font, int color, int fontSize, int width)
+    {
+        super(context, text, x, y, font, color, fontSize, width);
+    }
+
+    public void update()
+    {
+
     }
 }

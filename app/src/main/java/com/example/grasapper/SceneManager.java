@@ -18,11 +18,13 @@ public class SceneManager
     public SceneManager(Context context)
     {
         ACTIVE_SCANE = 0;
-        scanes.add(new TitleScene(context));
-        scanes.add(new GameplayScene(context));
-        scanes.add(new MenuScene(context));
-        scanes.add(new HelpScene(context));
-        scanes.add(new CodeScene(context));
+        scanes.add(new TitleScene(context)); //0
+        scanes.add(new GameplayScene(context)); //1
+        scanes.add(new MenuScene(context)); //2
+        scanes.add(new HelpScene(context)); //3
+        scanes.add(new CodeScene(context)); //4
+        scanes.add(new Help2Scene(context)); //5
+        scanes.add(new Help3Scene(context)); //6
     }
 
     public void update()

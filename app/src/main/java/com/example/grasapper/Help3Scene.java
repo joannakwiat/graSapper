@@ -10,35 +10,36 @@ import android.view.MotionEvent;
 
 import androidx.annotation.RequiresApi;
 
-public class HelpScene implements Scene
+public class Help3Scene implements Scene
 {
+
     Sprite background;
     NavigationButton back;
-    NavigationButton next;
+    NavigationButton back2;
     Text text;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public HelpScene(Context context)
+    public Help3Scene(Context context)
     {
-        Bitmap backgroundImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.help_screen);
+        Bitmap backgroundImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.help_screen2);
         Bitmap backImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.back);
         Bitmap back2Image = BitmapFactory.decodeResource(context.getResources(),R.drawable.back2);
 
         background = new Sprite(backgroundImage, 0,0,1080,1794);
         back = new NavigationButton(backImage, 50,50,61, 105, 1);
-        text = new Text(context, "Twoim zadaniem będzie pokierowanie postacią w taki sposób, aby rozbroić wszystkie bomby, jednocześnie ich nie detonując oraz omijać nierozcięte kable. Sterowanie postacią odbywa się przy pomocy układania listy poleceń, którą Twoja postać ma wykonać, aby zrealizować swoje zadanie. Ilość instrukcji jest ograniczona!",
-                30, 700, R.font.a_b, Color.BLACK, 60, 1020);
-        next = new NavigationButton(back2Image, 919,1639,61, 105, 5);
+        text = new Text(context, "Na planszy będą umieszczone bomby, które będziesz miał za zadanie rozbroić. Aby to zrobić konieczne będzie dostanie się do bomby i wykonanie instrukcji rozbrajania. Bomba wybuchnie, jeśli na nią wejdziesz! \n\n\n Do każdej bomby dociera jeden lub kilka kabli, które po wejściu Twojej postaci na nie, doprowadza w konsekwencji do wybuchu bomby. Aby do tego nie doszło można wykonać instrukcję przecinania. Kable mogą być przecięte tylko i wyłącznie w z góry ustalonej kolejności, co oznacza, że przecięcie złego kabla również doprowadzi do wybuchu bomby.",
+                30, 250, R.font.a_b, Color.BLACK, 60, 1020);
+        back2 = new NavigationButton(backImage, 100,1639,61, 105, 5);
     }
 
-    public HelpScene() {
+    public Help3Scene() {
     }
 
     @Override
     public void update()
     {
         back.update();
-        next.update();
+        back2.update();
     }
 
     @Override
@@ -46,7 +47,7 @@ public class HelpScene implements Scene
     {
         background.draw(canvas);
         back.draw(canvas);
-        next.draw(canvas);
+        back2.draw(canvas);
         text.draw(canvas);
     }
 
@@ -54,7 +55,7 @@ public class HelpScene implements Scene
     public void reciveTouch(MotionEvent event)
     {
         back.reciveTouch(event);
-        next.reciveTouch(event);
+        back2.reciveTouch(event);
         switch (event.getAction())
         {
             case MotionEvent.ACTION_MOVE:
@@ -70,4 +71,3 @@ public class HelpScene implements Scene
 
     }
 }
-
