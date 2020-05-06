@@ -17,7 +17,7 @@ public class CodeScene implements Scene
         Bitmap backImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.back);
 
         background = new Sprite(backgroundImage, 0,0,1080,1794);
-        back = new NavigationButton(backImage, 50,50,61, 105, 1);
+        back = new NavigationButton(context, backImage, 50,50,61, 105, 1);
     }
 
     @Override

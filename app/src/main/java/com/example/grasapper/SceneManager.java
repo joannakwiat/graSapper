@@ -13,10 +13,13 @@ public class SceneManager
 {
     private ArrayList<Scene> scanes = new ArrayList<>();
     public static int ACTIVE_SCANE;
+    MusicManager manager;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public SceneManager(Context context)
     {
+        manager = new MusicManager(context);
+
         ACTIVE_SCANE = 0;
         scanes.add(new TitleScene(context)); //0
         scanes.add(new GameplayScene(context)); //1
@@ -30,6 +33,7 @@ public class SceneManager
     public void update()
     {
         scanes.get(ACTIVE_SCANE).update();
+        manager.update();
     }
 
     public void draw(Canvas canvas)

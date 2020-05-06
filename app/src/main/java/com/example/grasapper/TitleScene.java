@@ -13,7 +13,7 @@ public class TitleScene implements Scene
     public TitleScene(Context context)
     {
         Bitmap bmp = BitmapFactory.decodeResource(context.getResources(), R.drawable.title_screen);
-        button = new TitleScreenButton(bmp, 0, 0, 1080, 1794, 1);
+        button = new TitleScreenButton(context, bmp, 0, 0, 1080, 1794, 1, 1);
     }
 
     @Override

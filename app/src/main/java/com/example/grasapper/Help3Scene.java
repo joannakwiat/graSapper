@@ -26,10 +26,10 @@ public class Help3Scene implements Scene
         Bitmap back2Image = BitmapFactory.decodeResource(context.getResources(),R.drawable.back2);
 
         background = new Sprite(backgroundImage, 0,0,1080,1794);
-        back = new NavigationButton(backImage, 50,50,61, 105, 1);
+        back = new NavigationButton(context, backImage, 50,50,61, 105, 1);
         text = new Text(context, "Na planszy będą umieszczone bomby, które będziesz miał za zadanie rozbroić. Aby to zrobić konieczne będzie dostanie się do bomby i wykonanie instrukcji rozbrajania. Bomba wybuchnie, jeśli na nią wejdziesz! \n\n\n Do każdej bomby dociera jeden lub kilka kabli, które po wejściu Twojej postaci na nie, doprowadza w konsekwencji do wybuchu bomby. Aby do tego nie doszło można wykonać instrukcję przecinania. Kable mogą być przecięte tylko i wyłącznie w z góry ustalonej kolejności, co oznacza, że przecięcie złego kabla również doprowadzi do wybuchu bomby.",
                 30, 250, R.font.a_b, Color.BLACK, 60, 1020);
-        back2 = new NavigationButton(backImage, 100,1639,61, 105, 5);
+        back2 = new NavigationButton(context, backImage, 100,1639,61, 105, 5);
     }
 
     public Help3Scene() {

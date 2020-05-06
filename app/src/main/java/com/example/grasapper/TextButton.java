@@ -7,6 +7,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Typeface;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.text.StaticLayout;
 import android.text.TextPaint;
@@ -22,6 +23,8 @@ public class TextButton
     StaticLayout staticLayout;
     StaticLayout.Builder staticLayoutBuild;
 
+    MediaPlayer click;
+
     //koordynaty poczatkowe (lewy górny róg)
     int x;
     int y;
@@ -29,6 +32,8 @@ public class TextButton
     //szerokośc i wysokość
     int width;
     int height;
+
+    int activeMusicToChange;
 
     boolean clicked;
     TextPaint paint;
@@ -41,12 +46,44 @@ public class TextButton
     @RequiresApi(api = Build.VERSION_CODES.M)
     TextButton (Context context, String text, int x, int y, int font, int color, int fontSize, int width)
     {
+        click = MediaPlayer.create(context, R.raw.click);
+
         float screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         float screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
         float widthRatio = screenWidth/1080;
         float heightRatio = screenHeight/1794;
 
+        this.activeMusicToChange = -1;
+
+        this.x = (int)(x*widthRatio);
+        this.y = (int)(y*heightRatio);
+        this.width = (int)(width*widthRatio);
+        this.clicked = false;
+
+        paint = new TextPaint();
+        Typeface typeface = ResourcesCompat.getFont(context, font);
+        paint.setTypeface(typeface);
+        paint.setColor(color);
+        paint.setTextSize(fontSize);
+
+        staticLayoutBuild = StaticLayout.Builder.obtain(text, 0,text.length(),paint,(int)(width*widthRatio));
+        staticLayout = staticLayoutBuild.build();
+        this.height = staticLayout.getHeight();
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    TextButton (Context context, String text, int x, int y, int font, int color, int fontSize, int width, int changeActiveMusic)
+    {
+        click = MediaPlayer.create(context, R.raw.click);
+
+        float screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        float screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+        float widthRatio = screenWidth/1080;
+        float heightRatio = screenHeight/1794;
+
+        this.activeMusicToChange = changeActiveMusic;
 
         this.x = (int)(x*widthRatio);
         this.y = (int)(y*heightRatio);
@@ -86,8 +123,14 @@ public class TextButton
     {
         if (clicked)
         {
+            click.start();
             ColorFilter filter = new LightingColorFilter(Color.WHITE, 0);
             paint.setColorFilter(filter);
+            if (activeMusicToChange != -1)
+            {
+                MusicManager.CHANGE = true;
+                MusicManager.ACTIVE_MUSIC = activeMusicToChange;
+            }
             clicked = false;
         }
     }
@@ -139,6 +182,13 @@ class NavigationTextButton extends TextButton
     NavigationTextButton (Context context, String text, int x, int y, int font, int color, int fontSize, int width, int sceneNumber)
     {
         super(context,text,x,y,font,color,fontSize,width);
+        this.numberOfScene = sceneNumber;
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    NavigationTextButton (Context context, String text, int x, int y, int font, int color, int fontSize, int width, int sceneNumber, int changeActiveMusic)
+    {
+        super(context,text,x,y,font,color,fontSize,width, changeActiveMusic);
         this.numberOfScene = sceneNumber;
     }
 

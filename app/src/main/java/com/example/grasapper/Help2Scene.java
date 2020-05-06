@@ -52,11 +52,11 @@ public class Help2Scene implements Scene
         img6 = new Sprite(IMG6, 100,940, 95, 100);
         img7 = new Sprite(IMG7, 100,1100, 83, 87);
         img8 = new Sprite(IMG8, 100,1235, 86, 99);
-        back = new NavigationButton(backImage, 50,50,61, 105, 1);
+        back = new NavigationButton(context, backImage, 50,50,61, 105, 1);
         text = new Text(context, "Zrób 1 krok do przodu \n\nZrób 3 kroki do przodu\n\nZrób 4 kroki do przodu\n\nSkocz\n\nSkręć w prawo\n\nSkręć w lewo\n\nPrzetnij przewód\n\nRozbrój bombę",
                 300, 220, R.font.a_b, Color.BLACK, 60, 1020);
-        back2 = new NavigationButton(backImage, 100,1639,61, 105, 3);
-        next = new NavigationButton(back2Image, 919,1639,61, 105, 6);
+        back2 = new NavigationButton(context, backImage, 100,1639,61, 105, 3);
+        next = new NavigationButton(context, back2Image, 919,1639,61, 105, 6);
     }
 
     public Help2Scene() {

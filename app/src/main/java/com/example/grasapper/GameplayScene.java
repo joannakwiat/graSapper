@@ -30,9 +30,9 @@ public class GameplayScene implements Scene
         Bitmap toCodeButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.code);
 
         background = new Sprite(backgroundImage, 0,0,1080,1794);
-        toMenuButton = new NavigationButton(toMenuButtonImage, 925, 1100, 150, 150, 2);
-        toHelpButton = new NavigationButton(toHelpButtonImage, 925, 1300, 150, 150, 3);
-        toCodeButton = new NavigationButton(toCodeButtonImage, 900, 1500, 280, 294, 4);
+        toMenuButton = new NavigationButton(context, toMenuButtonImage, 925, 1100, 150, 150, 2);
+        toHelpButton = new NavigationButton(context, toHelpButtonImage, 925, 1300, 150, 150, 3);
+        toCodeButton = new NavigationButton(context, toCodeButtonImage, 900, 1500, 280, 294, 4);
     }
 
     @Override

@@ -1,5 +1,6 @@
 package com.example.grasapper;
 
+import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -7,6 +8,7 @@ import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
+import android.media.MediaPlayer;
 import android.view.MotionEvent;
 
 public class Button
@@ -14,6 +16,7 @@ public class Button
 
     //sprite
     Bitmap bitmap;
+    MediaPlayer click;
 
     //koordynaty poczatkowe (lewy górny róg)
     int x;
@@ -23,6 +26,8 @@ public class Button
     int width;
     int height;
 
+    int activeMusicToChange;
+
     boolean clicked;
     Paint paint;
 
@@ -31,14 +36,17 @@ public class Button
 
     }
 
-    Button (Bitmap bitmap, int x, int y)
+    Button (Context context, Bitmap bitmap, int x, int y)
     {
+        click = MediaPlayer.create(context, R.raw.click);
+
         float screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         float screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
         float widthRatio = screenWidth/1080;
         float heightRatio = screenHeight/1794;
 
+        this.activeMusicToChange = -1;
 
         this.x = (int)(x*widthRatio);
         this.y = (int)(y*heightRatio);
@@ -50,14 +58,39 @@ public class Button
         paint = new Paint();
     }
 
-    Button (Bitmap bitmap, int x, int y, int width, int height)
+    Button (Context context, Bitmap bitmap, int x, int y, int width, int height)
     {
+        click = MediaPlayer.create(context, R.raw.click);
+
         float screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         float screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
         float widthRatio = screenWidth/1080;
         float heightRatio = screenHeight/1794;
 
+        this.activeMusicToChange = -1;
+
+        this.x = (int)(x*widthRatio);
+        this.y = (int)(y*heightRatio);
+        this.width = (int)(width*widthRatio);
+        this.height = (int)(height*heightRatio);
+        this.clicked = false;
+        this.bitmap = Bitmap.createScaledBitmap(bitmap, this.width, this.height, true);
+
+        paint = new Paint();
+    }
+
+    Button (Context context, Bitmap bitmap, int x, int y, int width, int height, int changeActiveMusic)
+    {
+        click = MediaPlayer.create(context, R.raw.click);
+
+        float screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
+        float screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
+
+        float widthRatio = screenWidth/1080;
+        float heightRatio = screenHeight/1794;
+
+        this.activeMusicToChange = changeActiveMusic;
 
         this.x = (int)(x*widthRatio);
         this.y = (int)(y*heightRatio);
@@ -90,8 +123,14 @@ public class Button
     {
         if (clicked)
         {
+            click.start();
             ColorFilter filter = new LightingColorFilter(Color.WHITE, 0);
             paint.setColorFilter(filter);
+            if (activeMusicToChange != -1)
+            {
+                MusicManager.CHANGE = true;
+                MusicManager.ACTIVE_MUSIC = activeMusicToChange;
+            }
             clicked = false;
         }
     }
@@ -141,30 +180,40 @@ class NavigationButton extends Button
 
     }
 
-    NavigationButton (Bitmap bitmap, int x, int y, int width, int height, int sceneNumber)
+    NavigationButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int sceneNumber)
     {
-        super(bitmap,x,y,width,height);
+        super(context,bitmap,x,y,width,height);
+        this.numberOfScene = sceneNumber;
+
+    }
+
+    NavigationButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int sceneNumber, int changeActiveMusic)
+    {
+        super(context,bitmap,x,y,width,height,changeActiveMusic);
         this.numberOfScene = sceneNumber;
 
     }
 
     public void update()
     {
-
         if (clicked)
         {
             SceneManager.ACTIVE_SCANE = numberOfScene;
             super.update();
         }
-
     }
 }
 
 class TitleScreenButton extends NavigationButton
 {
-    TitleScreenButton (Bitmap bitmap, int x, int y, int width, int height, int sceneNumber)
+    TitleScreenButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int sceneNumber)
     {
-        super(bitmap,x,y,width,height,sceneNumber);
+        super(context,bitmap,x,y,width,height,sceneNumber);
+    }
+
+    TitleScreenButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int sceneNumber, int changeActiveMusic)
+    {
+        super(context,bitmap,x,y,width,height, sceneNumber, changeActiveMusic);
     }
 
     public void reciveTouch(MotionEvent event)
