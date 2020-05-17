@@ -229,3 +229,70 @@ class TitleScreenButton extends NavigationButton
     }
 }
 
+class GameButton extends Button
+{
+    GameButton()
+    {
+
+    }
+
+    GameButton (Context context, Bitmap bitmap, int x, int y, int width, int height)
+    {
+        super(context,bitmap,x,y,width,height);
+    }
+
+    GameButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int changeActiveMusic)
+    {
+        super(context,bitmap,x,y,width,height,changeActiveMusic);
+    }
+
+    public void update()
+    {
+        if (clicked)
+        {
+           //TODO
+            // dodanie do listy poleceń tego kliknietego elementu
+            super.update();
+        }
+    }
+}
+
+class PlayButton extends Button
+{
+    boolean isRepley;
+
+    PlayButton()
+    {
+
+    }
+
+    PlayButton (Context context, Bitmap bitmap, int x, int y, int width, int height, boolean isRepley)
+    {
+        super(context,bitmap,x,y,width,height);
+        this.isRepley = isRepley;
+    }
+
+    PlayButton (Context context, Bitmap bitmap, int x, int y, int width, int height, boolean isRepley, int changeActiveMusic)
+    {
+        super(context,bitmap,x,y,width,height,changeActiveMusic);
+        this.isRepley = isRepley;
+    }
+
+    public void update()
+    {
+        if (clicked)
+        {
+            if(isRepley==true){
+                //TODO
+                // Wyczyść liste komend
+            }
+            if(isRepley==false){
+                //TODO
+                // Aktywuje animacje chodzenia po planszy
+                // Rozpoczyna sprawdzanie poprawności kombinacji z listy poleceń
+            }
+
+            super.update();
+        }
+    }
+}
