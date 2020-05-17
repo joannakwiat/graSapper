@@ -62,14 +62,14 @@ public class GameplayScene implements Scene
         replayButton = new PlayButton(context, replayButtonImage, 910, 90, 96, 100, true);
 
         //gameButtony
-        button1step = new GameButton(context, img1step, 150, 1170, 100, 120);
-        button3step = new GameButton(context, img3step, 420, 1170, 100, 120);
-        button4step = new GameButton(context, img4step, 690, 1170, 100, 120);
-        buttonJump = new GameButton(context, imgJump, 150, 1370, 120, 120);
-        buttonLeft = new GameButton(context, imgLeft, 410, 1370, 115, 120);
-        buttonRight = new GameButton(context, imgRight, 690, 1370, 115, 120);
-        buttonCut = new GameButton(context, imgCut, 420, 1570, 116, 120);
-        buttonFlag = new GameButton(context, imgFlag, 690, 1570, 104, 120);
+        button1step = new GameButton(context, img1step, 150, 1170, 100, 120, 0);
+        button3step = new GameButton(context, img3step, 420, 1170, 100, 120, 1);
+        button4step = new GameButton(context, img4step, 690, 1170, 100, 120, 2);
+        buttonJump = new GameButton(context, imgJump, 150, 1370, 120, 120, 3);
+        buttonLeft = new GameButton(context, imgLeft, 410, 1370, 115, 120, 4);
+        buttonRight = new GameButton(context, imgRight, 690, 1370, 115, 120, 5);
+        buttonCut = new GameButton(context, imgCut, 420, 1570, 116, 120, 6);
+        buttonFlag = new GameButton(context, imgFlag, 690, 1570, 104, 120, 7);
     }
 
     @Override

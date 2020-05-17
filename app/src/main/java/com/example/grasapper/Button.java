@@ -231,19 +231,23 @@ class TitleScreenButton extends NavigationButton
 
 class GameButton extends Button
 {
+    int buttonType;
+
     GameButton()
     {
 
     }
 
-    GameButton (Context context, Bitmap bitmap, int x, int y, int width, int height)
+    GameButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int type)
     {
         super(context,bitmap,x,y,width,height);
+        this.buttonType = type;
     }
 
-    GameButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int changeActiveMusic)
+    GameButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int type, int changeActiveMusic)
     {
         super(context,bitmap,x,y,width,height,changeActiveMusic);
+        this.buttonType = type;
     }
 
     public void update()
@@ -252,6 +256,38 @@ class GameButton extends Button
         {
            //TODO
             // dodanie do listy poleceń tego kliknietego elementu
+            if(buttonType==0)
+            {
+                //1step
+            }
+            if(buttonType==1)
+            {
+                //3step
+            }
+            if(buttonType==2)
+            {
+                //4step
+            }
+            if(buttonType==3)
+            {
+                //jump
+            }
+            if(buttonType==4)
+            {
+                //left
+            }
+            if(buttonType==5)
+            {
+                //right
+            }
+            if(buttonType==6)
+            {
+                //cut
+            }
+            if(buttonType==7)
+            {
+                //flag
+            }
             super.update();
         }
     }
