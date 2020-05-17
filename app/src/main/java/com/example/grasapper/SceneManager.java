@@ -28,6 +28,8 @@ public class SceneManager
         scanes.add(new CodeScene(context)); //4
         scanes.add(new Help2Scene(context)); //5
         scanes.add(new Help3Scene(context)); //6
+        scanes.add(new StartScene(context)); //7
+        scanes.add(new MenuScene2(context)); //8
     }
 
     public void update()
