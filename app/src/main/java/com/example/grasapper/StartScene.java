@@ -10,6 +10,8 @@ import android.view.MotionEvent;
 
 import androidx.annotation.RequiresApi;
 
+import java.util.ArrayList;
+
 public class StartScene implements Scene
 {
 
@@ -18,14 +20,21 @@ public class StartScene implements Scene
     NavigationTextButton text1,text2,text3,text4,text5,text6;
     Text text;
 
+    ArrayList<Bitmap> animationFrames = new ArrayList<>();
+    Animation animation;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public StartScene(Context context)
     {
+        Bitmap frame1 = BitmapFactory.decodeResource(context.getResources(),R.drawable.title_screen);
         Bitmap backgroundImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.start_screen);
         Bitmap bombImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.bomb_takiczarny);
         Bitmap bombUnlockedImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.bomb_takiczerwony);
         Bitmap menuImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.manu_takiczerwony);
 
+        animationFrames.add(frame1);
+        animation = new Animation(animationFrames, 0, 0, 0, -1113, 0.4f, 1080,1794);
+        animation.Play();
         background = new Sprite(backgroundImage, 0,0,1080,1794);
         bomb1 = new NavigationButton(context, bombUnlockedImage, 167,933,205, 205, 1);
         text1 = new NavigationTextButton(context,"1",247,975,R.font.a_b,Color.BLACK,97,1020,1);
@@ -63,11 +72,13 @@ public class StartScene implements Scene
         text5.update();
         text6.update();
         manu.update();
+        animation.update();
     }
 
     @Override
     public void draw(Canvas canvas)
     {
+
         background.draw(canvas);
         bomb1.draw(canvas);
         bomb2.draw(canvas);
@@ -83,6 +94,7 @@ public class StartScene implements Scene
         text5.draw(canvas);
         text6.draw(canvas);
         manu.draw(canvas);
+        animation.draw(canvas);
     }
 
     @Override

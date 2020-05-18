@@ -16,6 +16,8 @@ public class Animation
     float y;
     int endX;
     int endY;
+    int width;
+    int height;
     int currentFrame;
     private int secondsPassed;
 
@@ -29,14 +31,17 @@ public class Animation
     private long lastFrameMove;
 
     boolean isPlaying;
+    boolean contiunes;
     boolean loop;
+
+    int counter;
 
     Animation()
     {
 
     }
 
-    Animation(ArrayList<Bitmap> frames, int startX, int startY, int endX, int endY, int seconds)
+    Animation(ArrayList<Bitmap> frames, int startX, int startY, int endX, int endY, float seconds)
     {
         this.frames = frames;
         this.startX = startX;
@@ -46,28 +51,59 @@ public class Animation
         this.endX = endX;
         this.endY = endY;
         this.seconds = seconds;
-        this.spritePerFrame = 1.0f/frames.size();
-        this.movePerFrame = 1.0f/30;
+        this.spritePerFrame = 40.0f/frames.size();
+        this.movePerFrame = 1.0f/40;
         this.currentFrame = 0;
         this.secondsPassed = 0;
         this.lastFrameSprite = System.currentTimeMillis();
         this.lastFrameMove = System.currentTimeMillis();
-        this.xChangePerFrame = (endX - startX) * (this.movePerFrame / 4);
-        this.yChangePerFrame = (endY - startY) * (this.movePerFrame / 4);
+        this.xChangePerFrame = (endX - startX) * (this.movePerFrame / seconds);
+        this.yChangePerFrame = (endY - startY) * (this.movePerFrame / seconds);
 
-
+        this.counter = 0;
+        this.contiunes = false;
         this.isPlaying = false;
         this.loop = false;
     }
+    Animation(ArrayList<Bitmap> frames, int startX, int startY, int endX, int endY, float seconds, int width, int height)
+    {
+        for(int i=0;i<frames.size();i++) {
+            this.frames.add(Bitmap.createScaledBitmap(frames.get(i), width, height, true));
+        }
+        this.startX = startX;
+        this.startY = startY;
+        this.x = startX;
+        this.y = startY;
+        this.endX = endX;
+        this.endY = endY;
+        this.seconds = seconds;
+        this.width=width;
+        this.height=height;
+        this.spritePerFrame = 40.0f/frames.size();
+        this.movePerFrame = 1.0f/40;
+        this.currentFrame = 0;
+        this.secondsPassed = 0;
+        this.lastFrameSprite = System.currentTimeMillis();
+        this.lastFrameMove = System.currentTimeMillis();
+        this.xChangePerFrame = (endX - startX) * (this.movePerFrame / seconds);
+        this.yChangePerFrame = (endY - startY) * (this.movePerFrame / seconds);
 
+
+        this.counter = 0;
+        this.contiunes = false;
+        this.isPlaying = false;
+        this.loop = false;
+    }
     public void Play()
     {
         isPlaying = true;
+        contiunes = true;
     }
 
     public void Stop()
     {
         isPlaying = false;
+        contiunes = false;
     }
 
     public void draw(Canvas canvas)
@@ -81,49 +117,70 @@ public class Animation
         {
             return;
         }
-        Log.i("LOLZ", System.currentTimeMillis() - lastFrameMove + " > " + movePerFrame *1000);
+
         if (System.currentTimeMillis() - lastFrameMove > movePerFrame *1000 )
         {
-            Log.i("LOLZ", System.currentTimeMillis() - lastFrameMove + " > " + movePerFrame *1000);
+            counter++;
+            if (counter >= spritePerFrame)
+            {
+                counter = 0;
+                currentFrame++;
+                if (currentFrame >= frames.size())
+                {
+                    currentFrame = 0;
+                }
+            }
             x += xChangePerFrame;
             y += yChangePerFrame;
-            if (xChangePerFrame >= endX && yChangePerFrame >= endY)
+
+            if (xChangePerFrame < 0)
             {
-                Log.i("LOL", "LOL");
-                x = startX;
-                y = startY;
+                if (yChangePerFrame < 0)
+                {
+                    if (x <= endX && y <= endY)
+                    {
+                        contiunes = false;
+                    }
+                }
+                else
+                {
+                    if (x <= endX && y >= endY)
+                    {
+                        contiunes = false;
+                    }
+                }
+            }
+            else
+            {
+                if (yChangePerFrame < 0)
+                {
+                    if (x >= endX && y <= endY)
+                    {
+                        contiunes = false;
+                    }
+                }
+                else
+                {
+                    if (x >= endX && y >= endY)
+                    {
+                        contiunes = false;
+                    }
+                }
+            }
+
+            if (!contiunes)
+            {
                 if (!loop)
                 {
                     isPlaying = false;
                 }
-
-            }
-            lastFrameMove = System.currentTimeMillis();
-        }
-
-        if (System.currentTimeMillis() - lastFrameSprite > spritePerFrame *1000 )
-        {
-            Log.i("KEK", System.currentTimeMillis() - lastFrameSprite + " > " + spritePerFrame *1000);
-            currentFrame++;
-            if (currentFrame >= frames.size())
-            {
-                Log.i("LOL", "LOL");
-                if (secondsPassed < seconds)
-                {
-                    currentFrame = 0;
-                    secondsPassed++;
-                }
                 else
                 {
-                    currentFrame = 0;
-                    secondsPassed = 0;
-                    if (!loop)
-                    {
-                       isPlaying = false;
-                    }
+                    x = startX;
+                    y = startY;
                 }
             }
-            lastFrameSprite = System.currentTimeMillis();
+            lastFrameMove = System.currentTimeMillis();
         }
     }
 }
