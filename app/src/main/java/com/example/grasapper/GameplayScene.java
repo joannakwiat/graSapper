@@ -13,9 +13,13 @@ import android.view.MotionEvent;
 
 import androidx.annotation.RequiresApi;
 
+import java.util.ArrayList;
+
 
 public class GameplayScene implements Scene
 {
+    ArrayList<Integer> kolejka = new ArrayList<>();
+
     Sprite background;
     NavigationButton toMenuButton;
     NavigationButton toHelpButton;
@@ -32,7 +36,7 @@ public class GameplayScene implements Scene
    GameButton buttonFlag;
 
    PlayButton playButton;
-   PlayButton replayButton;
+   GameButton replayButton;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public GameplayScene(Context context)
@@ -59,7 +63,7 @@ public class GameplayScene implements Scene
         toHelpButton = new NavigationButton(context, toHelpButtonImage, 925, 1300, 150, 150, 3);
         toCodeButton = new NavigationButton(context, toCodeButtonImage, 900, 1500, 194, 294, 4);
         playButton = new PlayButton(context, playButtonImage, 740, 80, 104, 120, false);
-        replayButton = new PlayButton(context, replayButtonImage, 910, 90, 96, 100, true);
+        replayButton = new GameButton(context, replayButtonImage, 910, 90, 96, 100, 8);
 
         //gameButtony
         button1step = new GameButton(context, img1step, 150, 1170, 100, 120, 0);
@@ -79,16 +83,16 @@ public class GameplayScene implements Scene
         toHelpButton.update();
         toCodeButton.update();
         playButton.update();
-        replayButton.update();
+        replayButton.update(kolejka);
 
-        button1step.update();
-        button3step.update();
-        button4step.update();
-        buttonJump.update();
-        buttonLeft.update();
-        buttonRight.update();
-        buttonCut.update();
-        buttonFlag.update();
+        button1step.update(kolejka);
+        button3step.update(kolejka);
+        button4step.update(kolejka);
+        buttonJump.update(kolejka);
+        buttonLeft.update(kolejka);
+        buttonRight.update(kolejka);
+        buttonCut.update(kolejka);
+        buttonFlag.update(kolejka);
     }
 
     @Override

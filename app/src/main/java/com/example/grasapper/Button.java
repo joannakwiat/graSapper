@@ -10,6 +10,10 @@ import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
 import android.view.MotionEvent;
+import android.widget.Toast;
+import android.util.Log;
+
+import java.util.ArrayList;
 
 public class Button
 {
@@ -259,14 +263,18 @@ class GameButton extends Button
             if(buttonType==0)
             {
                 //1step
+                Log.i("1", "1");
+
             }
             if(buttonType==1)
             {
                 //3step
+                Log.i("3", "3");
             }
             if(buttonType==2)
             {
                 //4step
+                Log.i("4", "4");
             }
             if(buttonType==3)
             {
@@ -287,6 +295,77 @@ class GameButton extends Button
             if(buttonType==7)
             {
                 //flag
+            }
+            super.update();
+        }
+    }
+    public void update(ArrayList<Integer> kolejka)
+    {
+        if (clicked)
+        {
+            if (buttonType == 8) {
+                //flag
+                Log.i("Clicked", "RESET");
+                kolejka.clear();
+                Log.i("list", kolejka.toString());
+            }
+            if(kolejka.size()>9)
+            {
+                Log.i("ERROR","ZA DUZA KOLEJKA");
+            }
+            else {
+                //TODO
+                // dodanie do listy poleceń tego kliknietego elementu
+                if (buttonType == 0) {
+                    //1step
+                    Log.i("Clicked", "0");
+                    kolejka.add(0);
+                    Log.i("list", kolejka.toString());
+
+
+                }
+                if (buttonType == 1) {
+                    //3step
+                    Log.i("Clicked", "1");
+                    kolejka.add(1);
+                    Log.i("list", kolejka.toString());
+                }
+                if (buttonType == 2) {
+                    //4step
+                    Log.i("Clicked", "2");
+                    kolejka.add(2);
+                    Log.i("list", kolejka.toString());
+                }
+                if (buttonType == 3) {
+                    //jump
+                    Log.i("Clicked", "3");
+                    kolejka.add(3);
+                    Log.i("list", kolejka.toString());
+                }
+                if (buttonType == 4) {
+                    //left
+                    Log.i("Clicked", "4");
+                    kolejka.add(4);
+                    Log.i("list", kolejka.toString());
+                }
+                if (buttonType == 5) {
+                    //right
+                    Log.i("Clicked", "5");
+                    kolejka.add(5);
+                    Log.i("list", kolejka.toString());
+                }
+                if (buttonType == 6) {
+                    //cut
+                    Log.i("Clicked", "6");
+                    kolejka.add(6);
+                    Log.i("list", kolejka.toString());
+                }
+                if (buttonType == 7) {
+                    //flag
+                    Log.i("Clicked", "7");
+                    kolejka.add(7);
+                    Log.i("list", kolejka.toString());
+                }
             }
             super.update();
         }
