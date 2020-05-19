@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class GameplayScene implements Scene
 {
-    ArrayList<Integer> kolejka = new ArrayList<>();
+   public ArrayList<Integer> kolejka = new ArrayList<>();
 
     Sprite background;
     NavigationButton toMenuButton;
@@ -34,7 +34,7 @@ public class GameplayScene implements Scene
    GameButton buttonRight;
    GameButton buttonCut;
    GameButton buttonFlag;
-
+Text licznik;
    PlayButton playButton;
    GameButton replayButton;
 
@@ -74,6 +74,7 @@ public class GameplayScene implements Scene
         buttonRight = new GameButton(context, imgRight, 690, 1370, 115, 120, 5);
         buttonCut = new GameButton(context, imgCut, 420, 1570, 116, 120, 6);
         buttonFlag = new GameButton(context, imgFlag, 690, 1570, 104, 120, 7);
+        licznik = new Text(context,"0/10", 933, 279, R.font.a_b, Color.WHITE, 60, 1020);
     }
 
     @Override
@@ -83,16 +84,16 @@ public class GameplayScene implements Scene
         toHelpButton.update();
         toCodeButton.update();
         playButton.update();
-        replayButton.update(kolejka);
-
-        button1step.update(kolejka);
-        button3step.update(kolejka);
-        button4step.update(kolejka);
-        buttonJump.update(kolejka);
-        buttonLeft.update(kolejka);
-        buttonRight.update(kolejka);
-        buttonCut.update(kolejka);
-        buttonFlag.update(kolejka);
+        replayButton.update(kolejka,licznik);
+        button1step.update(kolejka,licznik);
+        button3step.update(kolejka,licznik);
+        button4step.update(kolejka,licznik);
+        buttonJump.update(kolejka,licznik);
+        buttonLeft.update(kolejka,licznik);
+        buttonRight.update(kolejka,licznik);
+        buttonCut.update(kolejka,licznik);
+        buttonFlag.update(kolejka,licznik);
+        licznik.update();
     }
 
     @Override
@@ -113,6 +114,7 @@ public class GameplayScene implements Scene
         buttonRight.draw(canvas);
         buttonCut.draw(canvas);
         buttonFlag.draw(canvas);
+        licznik.draw(canvas);
     }
 
     @Override

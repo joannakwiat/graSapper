@@ -299,7 +299,7 @@ class GameButton extends Button
             super.update();
         }
     }
-    public void update(ArrayList<Integer> kolejka)
+    public void update(ArrayList<Integer> kolejka, Text text)
     {
         if (clicked)
         {
@@ -314,14 +314,12 @@ class GameButton extends Button
                 Log.i("ERROR","ZA DUZA KOLEJKA");
             }
             else {
-                //TODO
-                // dodanie do listy poleceń tego kliknietego elementu
                 if (buttonType == 0) {
                     //1step
+                    Log.i("size kolejki", text.text);
                     Log.i("Clicked", "0");
                     kolejka.add(0);
                     Log.i("list", kolejka.toString());
-
 
                 }
                 if (buttonType == 1) {
@@ -367,9 +365,13 @@ class GameButton extends Button
                     Log.i("list", kolejka.toString());
                 }
             }
+            text.set(kolejka.size());
             super.update();
         }
     }
+
+
+
 }
 
 class PlayButton extends Button
