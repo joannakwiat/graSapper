@@ -70,9 +70,9 @@ public class Text
             zmianatextu = 1;
         } else if (x != 10 && zmianatextu == 1)
         {
-            this.paint.setTextSize(this.size);
-            this.color = Color.WHITE;
-            zmianatextu = 0;
+            this.paint.setTextSize(this.size + 4);
+            this.color = Color.BLACK;
+            zmianatextu=0;
         }
         this.text = String.valueOf(x) + " / 10";
     }

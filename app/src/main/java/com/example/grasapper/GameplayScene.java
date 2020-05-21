@@ -19,12 +19,8 @@ import java.util.ArrayList;
 public class GameplayScene implements Scene
 {
    public ArrayList<Integer> kolejka = new ArrayList<>();
-   public ArrayList<Bitmap> bitmaps = new ArrayList<>();
-   public ArrayList<Sprite> lista = new ArrayList<>();
-   public ArrayList<Integer> coordinates = new ArrayList<>();
 
     Sprite background;
-    Sprite blank;
     NavigationButton toMenuButton;
     NavigationButton toHelpButton;
     NavigationButton toCodeButton;
@@ -38,7 +34,7 @@ public class GameplayScene implements Scene
    GameButton buttonRight;
    GameButton buttonCut;
    GameButton buttonFlag;
-   Text licznik;
+Text licznik;
    PlayButton playButton;
    GameButton replayButton;
 
@@ -51,7 +47,6 @@ public class GameplayScene implements Scene
         Bitmap toCodeButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.code);
         Bitmap playButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.play);
         Bitmap replayButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.reverse);
-        Bitmap listImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.list);
 
         //gameButtony - img
         Bitmap img1step = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok1);
@@ -64,7 +59,6 @@ public class GameplayScene implements Scene
         Bitmap imgFlag = BitmapFactory.decodeResource(context.getResources(),R.drawable.bomb_bialaflaga);
 
         background = new Sprite(backgroundImage, 0,0,1080,1794);
-        blank = new Sprite(listImage, 925,300,1,1);
         toMenuButton = new NavigationButton(context, toMenuButtonImage, 925, 1100, 150, 150, 2);
         toHelpButton = new NavigationButton(context, toHelpButtonImage, 925, 1300, 150, 150, 3);
         toCodeButton = new NavigationButton(context, toCodeButtonImage, 900, 1500, 194, 294, 4);
@@ -80,25 +74,7 @@ public class GameplayScene implements Scene
         buttonRight = new GameButton(context, imgRight, 690, 1370, 115, 120, 5);
         buttonCut = new GameButton(context, imgCut, 420, 1570, 116, 120, 6);
         buttonFlag = new GameButton(context, imgFlag, 690, 1570, 104, 120, 7);
-        licznik = new Text(context,"0/10", 933, 279, R.font.a_b, Color.WHITE, 57, 1020);
-
-        bitmaps.add(img1step);
-        bitmaps.add(img3step);
-        bitmaps.add(img4step);
-        bitmaps.add(imgJump);
-        bitmaps.add(imgLeft);
-        bitmaps.add(imgRight);
-        bitmaps.add(imgCut);
-        bitmaps.add(imgFlag);
-        bitmaps.add(listImage);
-
-        for(int i=0; i<10; i++){
-            lista.add(blank);
-        }
-
-        //x, y
-        coordinates.add(970);
-        coordinates.add(370);
+        licznik = new Text(context,"0/10", 933, 279, R.font.a_b, Color.WHITE, 60, 1020);
     }
 
     @Override
@@ -108,19 +84,18 @@ public class GameplayScene implements Scene
         toHelpButton.update();
         toCodeButton.update();
         playButton.update();
-        replayButton.update(kolejka,licznik,bitmaps, lista,coordinates);
-        button1step.update(kolejka,licznik,bitmaps, lista,coordinates);
-        button3step.update(kolejka,licznik,bitmaps, lista,coordinates);
-        button4step.update(kolejka,licznik,bitmaps, lista,coordinates);
-        buttonJump.update(kolejka,licznik,bitmaps, lista,coordinates);
-        buttonLeft.update(kolejka,licznik,bitmaps, lista,coordinates);
-        buttonRight.update(kolejka,licznik,bitmaps, lista,coordinates);
-        buttonCut.update(kolejka,licznik,bitmaps, lista,coordinates);
-        buttonFlag.update(kolejka,licznik,bitmaps, lista,coordinates);
+        replayButton.update(kolejka,licznik);
+        button1step.update(kolejka,licznik);
+        button3step.update(kolejka,licznik);
+        button4step.update(kolejka,licznik);
+        buttonJump.update(kolejka,licznik);
+        buttonLeft.update(kolejka,licznik);
+        buttonRight.update(kolejka,licznik);
+        buttonCut.update(kolejka,licznik);
+        buttonFlag.update(kolejka,licznik);
         licznik.update();
     }
 
-    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void draw(Canvas canvas)
     {
@@ -140,9 +115,6 @@ public class GameplayScene implements Scene
         buttonCut.draw(canvas);
         buttonFlag.draw(canvas);
         licznik.draw(canvas);
-        for(int i=0; i<lista.size(); i++){
-            lista.get(i).draw(canvas);
-        }
     }
 
     @Override
