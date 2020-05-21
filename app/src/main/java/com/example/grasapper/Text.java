@@ -2,6 +2,7 @@ package com.example.grasapper;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Build;
 import android.text.StaticLayout;
@@ -21,8 +22,17 @@ public class Text
     int x;
     int y;
 
+    int zmianatextu=0;
+
     int width;
     int height;
+
+    int size;
+
+    float widthRatio;
+    float heightRatio;
+
+    int color;
 
     TextPaint paint;
 
@@ -32,13 +42,15 @@ public class Text
         float screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
         float screenHeight = Resources.getSystem().getDisplayMetrics().heightPixels;
 
-        float widthRatio = screenWidth/1080;
-        float heightRatio = screenHeight/1794;
-
+        this.widthRatio = screenWidth/1080;
+        this.heightRatio = screenHeight/1794;
+        this.size=fontSize;
         this.text = text;
         this.x = (int)(x*widthRatio);
         this.y = (int)(y*heightRatio);
         this.width = (int)(width*widthRatio);
+
+        this.color = color;
 
         paint = new TextPaint();
         Typeface typeface = ResourcesCompat.getFont(context, font);
@@ -46,20 +58,39 @@ public class Text
         paint.setColor(color);
         paint.setTextSize(fontSize);
 
-        staticLayoutBuild = StaticLayout.Builder.obtain(text, 0,text.length(),paint,(int)(width*widthRatio));
+        staticLayoutBuild = StaticLayout.Builder.obtain(text, 0,text.length(),paint,(int)(width*this.widthRatio));
         staticLayout = staticLayoutBuild.build();
         this.height = staticLayout.getHeight();
     }
+
+    public void set(int x) {
+        if (x == 10 && zmianatextu == 0) {
+            this.paint.setTextSize(this.size - 7);
+            this.color = Color.RED;
+            zmianatextu = 1;
+        } else if (x != 10 && zmianatextu == 1)
+        {
+            this.paint.setTextSize(this.size);
+            this.color = Color.WHITE;
+            zmianatextu = 0;
+        }
+        this.text = String.valueOf(x) + " / 10";
+    }
+
 
     public void update()
     {
 
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void draw(Canvas canvas)
     {
         canvas.save();
         canvas.translate(x,y);
+        paint.setColor(color);
+        staticLayoutBuild = StaticLayout.Builder.obtain(text, 0,text.length(),paint,(int)(width*widthRatio));
+        staticLayout = staticLayoutBuild.build();
         staticLayout.draw(canvas);
         canvas.restore();
     }

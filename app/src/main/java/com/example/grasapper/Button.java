@@ -299,14 +299,25 @@ class GameButton extends Button
             super.update();
         }
     }
-    public void update(ArrayList<Integer> kolejka)
+    public void update(ArrayList<Integer> kolejka, Text text, ArrayList<Bitmap> bitmaps, ArrayList<Sprite> lista, ArrayList<Integer> coor)
     {
+        Sprite blank = new Sprite(bitmaps.get(8), 925,300,1,1);
+        Sprite pom;
+        int x = coor.get(0);
+        int y = coor.get(1);
         if (clicked)
         {
             if (buttonType == 8) {
-                //flag
+                //reset
                 Log.i("Clicked", "RESET");
                 kolejka.clear();
+                lista.clear();
+                for(int i=0; i<10; i++){
+                    lista.add(blank);
+                }
+                coor.clear();
+                coor.add(970);
+                coor.add(370);
                 Log.i("list", kolejka.toString());
             }
             if(kolejka.size()>9)
@@ -314,62 +325,103 @@ class GameButton extends Button
                 Log.i("ERROR","ZA DUZA KOLEJKA");
             }
             else {
-                //TODO
-                // dodanie do listy poleceń tego kliknietego elementu
                 if (buttonType == 0) {
                     //1step
+                    Log.i("size kolejki", text.text);
                     Log.i("Clicked", "0");
                     kolejka.add(0);
+                    pom = new Sprite(bitmaps.get(0),x,y,bitmaps.get(0).getWidth()/4,bitmaps.get(0).getHeight()/4);
+                    lista.add(pom);
                     Log.i("list", kolejka.toString());
-
-
+                    coor.clear();
+                    coor.add(x);
+                    coor.add(y+70);
                 }
                 if (buttonType == 1) {
                     //3step
                     Log.i("Clicked", "1");
                     kolejka.add(1);
+                    pom = new Sprite(bitmaps.get(1),x,y,bitmaps.get(1).getWidth()/4,bitmaps.get(1).getHeight()/4);
+                    lista.add(pom);
                     Log.i("list", kolejka.toString());
+                    coor.clear();
+                    coor.add(x);
+                    coor.add(y+70);
                 }
                 if (buttonType == 2) {
                     //4step
                     Log.i("Clicked", "2");
                     kolejka.add(2);
+                    pom = new Sprite(bitmaps.get(2),x,y,bitmaps.get(2).getWidth()/4,bitmaps.get(2).getHeight()/4);
+                    lista.add(pom);
                     Log.i("list", kolejka.toString());
+                    coor.clear();
+                    coor.add(x);
+                    coor.add(y+70);
                 }
                 if (buttonType == 3) {
                     //jump
                     Log.i("Clicked", "3");
                     kolejka.add(3);
+                    pom = new Sprite(bitmaps.get(3),x,y,bitmaps.get(3).getWidth()/5,bitmaps.get(3).getHeight()/5);
+                    lista.add(pom);
                     Log.i("list", kolejka.toString());
+                    coor.clear();
+                    coor.add(x);
+                    coor.add(y+60);
                 }
                 if (buttonType == 4) {
                     //left
                     Log.i("Clicked", "4");
                     kolejka.add(4);
+                    pom = new Sprite(bitmaps.get(4),x,y,bitmaps.get(4).getWidth()/5,bitmaps.get(4).getHeight()/5);
+                    lista.add(pom);
                     Log.i("list", kolejka.toString());
+                    coor.clear();
+                    coor.add(x);
+                    coor.add(y+60);
                 }
                 if (buttonType == 5) {
                     //right
                     Log.i("Clicked", "5");
                     kolejka.add(5);
+                    pom = new Sprite(bitmaps.get(5),x,y,bitmaps.get(5).getWidth()/5,bitmaps.get(5).getHeight()/5);
+                    lista.add(pom);
                     Log.i("list", kolejka.toString());
+                    coor.clear();
+                    coor.add(x);
+                    coor.add(y+60);
                 }
                 if (buttonType == 6) {
                     //cut
                     Log.i("Clicked", "6");
                     kolejka.add(6);
+                    pom = new Sprite(bitmaps.get(6),x,y,bitmaps.get(6).getWidth()/4,bitmaps.get(6).getHeight()/4);
+                    lista.add(pom);
                     Log.i("list", kolejka.toString());
+                    coor.clear();
+                    coor.add(x);
+                    coor.add(y+70);
                 }
                 if (buttonType == 7) {
                     //flag
                     Log.i("Clicked", "7");
                     kolejka.add(7);
+                    pom = new Sprite(bitmaps.get(7),x,y,bitmaps.get(7).getWidth()/4,bitmaps.get(7).getHeight()/4);
+                    lista.add(pom);
                     Log.i("list", kolejka.toString());
+                    coor.clear();
+                    coor.add(x);
+                    coor.add(y+70);
                 }
             }
+            text.set(kolejka.size());
             super.update();
         }
     }
+
+
+
 }
 
 class PlayButton extends Button
