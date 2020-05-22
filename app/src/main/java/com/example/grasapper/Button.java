@@ -299,6 +299,7 @@ class GameButton extends Button
             super.update();
         }
     }
+
     public void update(ArrayList<Integer> kolejka, Text text, ArrayList<Bitmap> bitmaps, ArrayList<Sprite> lista, ArrayList<Integer> coor)
     {
         Sprite blank = new Sprite(bitmaps.get(8), 925,300,1,1);
