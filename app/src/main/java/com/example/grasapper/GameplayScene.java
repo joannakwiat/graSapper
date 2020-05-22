@@ -38,6 +38,7 @@ public class GameplayScene implements Scene
    GameButton buttonRight;
    GameButton buttonCut;
    GameButton buttonFlag;
+
    Text licznik;
    PlayButton playButton;
    GameButton replayButton;
@@ -108,6 +109,7 @@ public class GameplayScene implements Scene
         toHelpButton.update();
         toCodeButton.update();
         playButton.update();
+
         replayButton.update(kolejka,licznik,bitmaps, lista,coordinates);
         button1step.update(kolejka,licznik,bitmaps, lista,coordinates);
         button3step.update(kolejka,licznik,bitmaps, lista,coordinates);
@@ -117,6 +119,7 @@ public class GameplayScene implements Scene
         buttonRight.update(kolejka,licznik,bitmaps, lista,coordinates);
         buttonCut.update(kolejka,licznik,bitmaps, lista,coordinates);
         buttonFlag.update(kolejka,licznik,bitmaps, lista,coordinates);
+
         licznik.update();
     }
 
@@ -140,9 +143,11 @@ public class GameplayScene implements Scene
         buttonCut.draw(canvas);
         buttonFlag.draw(canvas);
         licznik.draw(canvas);
+
         for(int i=0; i<lista.size(); i++){
             lista.get(i).draw(canvas);
         }
+
     }
 
     @Override
