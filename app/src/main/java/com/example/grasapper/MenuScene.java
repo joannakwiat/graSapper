@@ -13,7 +13,8 @@ import androidx.annotation.RequiresApi;
 public class MenuScene implements Scene
 {
     Sprite background;
-    NavigationTextButton toGame,choose;
+    BackTextButton toGame;
+    NavigationTextButton choose;
     ExitTextButton exit;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -22,7 +23,7 @@ public class MenuScene implements Scene
         Bitmap backgroundImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.manu_screen);
 
         background = new Sprite(backgroundImage, 0,0,1080,1794);
-        toGame = new NavigationTextButton(context,"Back to Game", 300, 800, R.font.a_b, Color.BLACK, 80, 1000, 1);
+        toGame = new BackTextButton(context,"Back to Game", 300, 800, R.font.a_b, Color.BLACK, 80, 1000);
         choose = new NavigationTextButton(context,"Choose level", 300, 1000, R.font.a_b, Color.BLACK, 80, 1000, 7);
         exit = new ExitTextButton(context,"Save and exit", 300, 1200, R.font.a_b, Color.BLACK, 80, 1000);
     }

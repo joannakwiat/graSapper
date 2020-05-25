@@ -21,7 +21,7 @@ public class CodeScene implements Scene
     Sprite skok;
     Sprite cut;
     Sprite rozbroj;
-    NavigationButton back;
+    BackButton back;
 
     public CodeScene(Context context)
     {
@@ -38,7 +38,7 @@ public class CodeScene implements Scene
         Bitmap rozbrojImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.rozbroj);
 
         background = new Sprite(backgroundImage, 0,0,1080,1794);
-        back = new NavigationButton(context, backImage, 80,80,61, 105, 1);
+        back = new BackButton(context, backImage, 80,80,61, 105);
         start = new Sprite(startImage, 290,290, startImage.getWidth()/2, startImage.getHeight()/2);
     }
 
@@ -48,6 +48,7 @@ public class CodeScene implements Scene
     @Override
     public void draw(Canvas canvas)
     {
+        //Log.i("tag", GameplayScene.kolejka.toString());
         background.draw(canvas);
         back.draw(canvas);
         start.draw(canvas);

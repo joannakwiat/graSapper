@@ -13,7 +13,7 @@ import androidx.annotation.RequiresApi;
 public class HelpScene implements Scene
 {
     Sprite background;
-    NavigationButton back;
+    BackButton back;
     NavigationButton next;
     Text text;
 
@@ -25,7 +25,7 @@ public class HelpScene implements Scene
         Bitmap back2Image = BitmapFactory.decodeResource(context.getResources(),R.drawable.back2);
 
         background = new Sprite(backgroundImage, 0,0,1080,1794);
-        back = new NavigationButton(context, backImage, 50,50,61, 105, 1);
+        back = new BackButton(context, backImage, 50,50,61, 105);
         text = new Text(context, "Twoim zadaniem będzie pokierowanie postacią w taki sposób, aby rozbroić wszystkie bomby, jednocześnie ich nie detonując oraz omijać nierozcięte kable. Sterowanie postacią odbywa się przy pomocy układania listy poleceń, którą Twoja postać ma wykonać, aby zrealizować swoje zadanie. Ilość instrukcji jest ograniczona!",
                 30, 700, R.font.a_b, Color.BLACK, 60, 1020);
         next = new NavigationButton(context, back2Image, 919,1639,61, 105, 5);
@@ -41,6 +41,7 @@ public class HelpScene implements Scene
         next.update();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void draw(Canvas canvas)
     {

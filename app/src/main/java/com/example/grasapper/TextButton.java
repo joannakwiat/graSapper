@@ -36,6 +36,7 @@ public class TextButton
     int activeMusicToChange;
 
     boolean clicked;
+    boolean active;
     TextPaint paint;
 
     TextButton ()
@@ -60,6 +61,7 @@ public class TextButton
         this.y = (int)(y*heightRatio);
         this.width = (int)(width*widthRatio);
         this.clicked = false;
+        active = true;
 
         paint = new TextPaint();
         Typeface typeface = ResourcesCompat.getFont(context, font);
@@ -89,6 +91,7 @@ public class TextButton
         this.y = (int)(y*heightRatio);
         this.width = (int)(width*widthRatio);
         this.clicked = false;
+        active = true;
 
         paint = new TextPaint();
         Typeface typeface = ResourcesCompat.getFont(context, font);
@@ -99,6 +102,16 @@ public class TextButton
         staticLayoutBuild = StaticLayout.Builder.obtain(text, 0,text.length(),paint,(int)(width*widthRatio));
         staticLayout = staticLayoutBuild.build();
         this.height = staticLayout.getHeight();
+    }
+
+    public void setInactive()
+    {
+        active = false;
+    }
+
+    public void setActive()
+    {
+        active = true;
     }
 
 
@@ -121,56 +134,58 @@ public class TextButton
 
     public void update()
     {
-        if (clicked)
+        if (active)
         {
-            click.start();
-            ColorFilter filter = new LightingColorFilter(Color.WHITE, 0);
-            paint.setColorFilter(filter);
-            if (activeMusicToChange != -1)
-            {
-                MusicManager.CHANGE = true;
-                MusicManager.ACTIVE_MUSIC = activeMusicToChange;
+            if (clicked) {
+                click.start();
+                ColorFilter filter = new LightingColorFilter(Color.WHITE, 0);
+                paint.setColorFilter(filter);
+                if (activeMusicToChange != -1) {
+                    MusicManager.CHANGE = true;
+                    MusicManager.ACTIVE_MUSIC = activeMusicToChange;
+                }
+                clicked = false;
             }
-            clicked = false;
         }
     }
 
     public void reciveTouch(MotionEvent event)
     {
-        switch (event.getAction())
+        if (active)
         {
-            case MotionEvent.ACTION_DOWN:
-            {
-                if (isClicked(event.getX(), event.getY())) {
-                    ColorFilter filter = new LightingColorFilter(Color.GRAY, 0);
-                    paint.setColorFilter(filter);
+            switch (event.getAction()) {
+                case MotionEvent.ACTION_DOWN: {
+                    if (isClicked(event.getX(), event.getY())) {
+                        ColorFilter filter = new LightingColorFilter(Color.GRAY, 0);
+                        paint.setColorFilter(filter);
 
+                    }
+                    break;
                 }
-                break;
-            }
-            case MotionEvent.ACTION_MOVE:
-            {
-                if(!isClicked(event.getX(),event.getY()))
-                {
-                    ColorFilter filter = new LightingColorFilter(Color.WHITE, 0);
-                    paint.setColorFilter(filter);
+                case MotionEvent.ACTION_MOVE: {
+                    if (!isClicked(event.getX(), event.getY())) {
+                        ColorFilter filter = new LightingColorFilter(Color.WHITE, 0);
+                        paint.setColorFilter(filter);
+                    }
+                    break;
                 }
-                break;
-            }
-            case MotionEvent.ACTION_UP:
-            {
-                setClicked(isClicked(event.getX(), event.getY()));
-                break;
+                case MotionEvent.ACTION_UP: {
+                    setClicked(isClicked(event.getX(), event.getY()));
+                    break;
+                }
             }
         }
     }
 
     public void draw(Canvas canvas)
     {
-        canvas.save();
-        canvas.translate(x,y);
-        staticLayout.draw(canvas);
-        canvas.restore();
+        if (active)
+        {
+            canvas.save();
+            canvas.translate(x, y);
+            staticLayout.draw(canvas);
+            canvas.restore();
+        }
     }
 }
 
@@ -194,12 +209,42 @@ class NavigationTextButton extends TextButton
 
     public void update()
     {
-        if (clicked)
+        if (active)
         {
-            SceneManager.ACTIVE_SCANE = numberOfScene;
-            super.update();
+            if (clicked) {
+                SceneManager.PREVIOUSE_SCENE = SceneManager.ACTIVE_SCANE;
+                SceneManager.ACTIVE_SCANE = numberOfScene;
+                super.update();
+            }
         }
+    }
+}
 
+class BackTextButton extends TextButton
+{
+    int numberOfScene;
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    BackTextButton (Context context, String text, int x, int y, int font, int color, int fontSize, int width)
+    {
+        super(context,text,x,y,font,color,fontSize,width);
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.M)
+    BackTextButton (Context context, String text, int x, int y, int font, int color, int fontSize, int width, int changeActiveMusic)
+    {
+        super(context,text,x,y,font,color,fontSize,width, changeActiveMusic);
+    }
+
+    public void update()
+    {
+        if (active)
+        {
+            if (clicked) {
+                SceneManager.ACTIVE_SCANE = SceneManager.PREVIOUSE_SCENE;
+                super.update();
+            }
+        }
     }
 }
 
@@ -213,10 +258,11 @@ class ExitTextButton extends TextButton
 
     public void update()
     {
-        if (clicked)
+        if (active)
         {
-            System.exit(0);
+            if (clicked) {
+                System.exit(0);
+            }
         }
-
     }
 }

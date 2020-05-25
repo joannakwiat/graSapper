@@ -22,6 +22,8 @@ public class Sprite
     int width;
     int height;
 
+    boolean active;
+
     Sprite (Bitmap bitmap, int x, int y)
     {
         float screenWidth = Resources.getSystem().getDisplayMetrics().widthPixels;
@@ -35,6 +37,7 @@ public class Sprite
         this.width = (int)(width*widthRatio);
         this.height = (int)(height*heightRatio);
         this.bitmap = Bitmap.createScaledBitmap(bitmap, width, height, true);
+        active = true;
     }
 
     Sprite (Bitmap bitmap, int x, int y, int width, int height)
@@ -50,16 +53,33 @@ public class Sprite
         this.width = (int)(width*widthRatio);
         this.height = (int)(height*heightRatio);
         this.bitmap = Bitmap.createScaledBitmap(bitmap, this.width, this.height, true);
+        active = true;
+    }
+
+    public void setInactive()
+    {
+        active = false;
+    }
+
+    public void setActive()
+    {
+        active = true;
     }
 
     public void update()
     {
+        if (active)
+        {
 
+        }
     }
 
     public void draw(Canvas canvas)
     {
-        canvas.drawBitmap( bitmap, x, y, null);
+        if (active)
+        {
+            canvas.drawBitmap(bitmap, x, y, null);
+        }
     }
 
 }

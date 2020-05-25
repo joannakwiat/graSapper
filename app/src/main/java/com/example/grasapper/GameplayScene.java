@@ -45,6 +45,9 @@ public class GameplayScene implements Scene
    PlayButton playButton;
    GameButton replayButton;
 
+   NextLevelButton toNextScene;
+   WarringButton toCurrentScene;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public GameplayScene(Context context)
     {
@@ -58,6 +61,8 @@ public class GameplayScene implements Scene
         Bitmap boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom3);
         Bitmap WinImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.win3);
         Bitmap DefeatImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.defeat3);
+        Bitmap WinImageButton = BitmapFactory.decodeResource(context.getResources(),R.drawable.win1);
+        Bitmap DefeatImageButton = BitmapFactory.decodeResource(context.getResources(),R.drawable.defeat1);
 
         //gameButtony - img
         Bitmap img1step = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok1);
@@ -89,6 +94,11 @@ public class GameplayScene implements Scene
         buttonFlag = new GameButton(context, imgFlag, 690, 1570, 104, 120, 7);
         licznik = new Text(context,"0/6", 940, 279, R.font.a_b, Color.WHITE, 57, 1020);
 
+        toNextScene = new NextLevelButton(context, WinImageButton,  280, 990, 520, 150, 9);
+        toCurrentScene = new WarringButton(context, DefeatImageButton,  280, 990, 520, 150);
+        toNextScene.setInactive();
+        toCurrentScene.setInactive();
+
         bitmaps.add(img1step);
         bitmaps.add(img3step);
         bitmaps.add(img4step);
@@ -118,7 +128,7 @@ public class GameplayScene implements Scene
         toMenuButton.update();
         toHelpButton.update();
         toCodeButton.update();
-        playButton.update(kolejka,1,WinArray,WinBitmaps);
+        playButton.update(kolejka,1,WinArray,WinBitmaps, toNextScene, toCurrentScene);
         replayButton.update(kolejka,licznik,bitmaps, lista,coordinates,6);
         button1step.update(kolejka,licznik,bitmaps, lista,coordinates,6);
         button3step.update(kolejka,licznik,bitmaps, lista,coordinates,6);
@@ -129,6 +139,8 @@ public class GameplayScene implements Scene
         buttonCut.update(kolejka,licznik,bitmaps, lista,coordinates,6);
         buttonFlag.update(kolejka,licznik,bitmaps, lista,coordinates,6);
         licznik.update();
+        toNextScene.update(WinArray.get(0));
+        toCurrentScene.update(WinArray.get(0));
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -156,6 +168,8 @@ public class GameplayScene implements Scene
             lista.get(i).draw(canvas);
         }
         WinArray.get(0).draw(canvas);
+        toNextScene.draw(canvas);
+        toCurrentScene.draw(canvas);
     }
 
     @Override
@@ -175,6 +189,9 @@ public class GameplayScene implements Scene
         buttonRight.reciveTouch(event);
         buttonCut.reciveTouch(event);
         buttonFlag.reciveTouch(event);
+
+        toNextScene.reciveTouch(event);
+        toCurrentScene.reciveTouch(event);
     }
 
     @Override

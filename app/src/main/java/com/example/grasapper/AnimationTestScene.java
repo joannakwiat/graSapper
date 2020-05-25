@@ -21,7 +21,7 @@ public class AnimationTestScene implements Scene
         animationFrames.add(frame1);
         animationFrames.add(frame2);
 
-        animation = new Animation(animationFrames, 100, 100, 400, 100, 4);
+        animation = new Animation(animationFrames, 0, 0, 500, 1000, 10);
 
         animation.Play();
     }

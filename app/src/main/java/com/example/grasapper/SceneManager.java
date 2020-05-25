@@ -13,6 +13,7 @@ public class SceneManager
 {
     private ArrayList<Scene> scanes = new ArrayList<>();
     public static int ACTIVE_SCANE;
+    public static int PREVIOUSE_SCENE;
     MusicManager manager;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
@@ -21,6 +22,7 @@ public class SceneManager
         manager = new MusicManager(context);
 
         ACTIVE_SCANE = 0;
+        PREVIOUSE_SCENE = 0;
         scanes.add(new TitleScene(context)); //0
         scanes.add(new GameplayScene(context)); //1
         scanes.add(new MenuScene(context)); //2
