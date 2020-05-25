@@ -2,6 +2,7 @@ package com.example.grasapper;
 
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Matrix;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -27,6 +28,9 @@ public class Animation
     private float xChangePerFrame;
     private float yChangePerFrame;
 
+    float angle;
+    float angleChange;
+
     private long lastFrameSprite;
     private long lastFrameMove;
 
@@ -35,6 +39,8 @@ public class Animation
     boolean loop;
 
     int counter;
+
+    Bitmap frame;
 
     Animation()
     {
@@ -60,11 +66,15 @@ public class Animation
         this.xChangePerFrame = (endX - startX) * (this.movePerFrame / seconds);
         this.yChangePerFrame = (endY - startY) * (this.movePerFrame / seconds);
 
+        this.angle = 0;
+        this.angleChange = 0;
+
         this.counter = 0;
         this.contiunes = false;
         this.isPlaying = false;
         this.loop = false;
     }
+
     Animation(ArrayList<Bitmap> frames, int startX, int startY, int endX, int endY, float seconds, int width, int height)
     {
         for(int i=0;i<frames.size();i++) {
@@ -88,12 +98,47 @@ public class Animation
         this.xChangePerFrame = (endX - startX) * (this.movePerFrame / seconds);
         this.yChangePerFrame = (endY - startY) * (this.movePerFrame / seconds);
 
+        this.angle = 0;
+        this.angleChange = 0;
 
         this.counter = 0;
         this.contiunes = false;
         this.isPlaying = false;
         this.loop = false;
     }
+
+    Animation(ArrayList<Bitmap> frames, int startX, int startY, int endX, int endY, float seconds, int width, int height, float angle)
+    {
+        for(int i=0;i<frames.size();i++) {
+            this.frames.add(Bitmap.createScaledBitmap(frames.get(i), width, height, true));
+        }
+        this.startX = startX;
+        this.startY = startY;
+        this.x = startX;
+        this.y = startY;
+        this.endX = endX;
+        this.endY = endY;
+        this.seconds = seconds;
+        this.width=width;
+        this.height=height;
+        this.spritePerFrame = 40.0f/frames.size();
+        this.movePerFrame = 1.0f/40;
+        this.currentFrame = 0;
+        this.secondsPassed = 0;
+        this.lastFrameSprite = System.currentTimeMillis();
+        this.lastFrameMove = System.currentTimeMillis();
+        this.xChangePerFrame = (endX - startX) * (this.movePerFrame / seconds);
+        this.yChangePerFrame = (endY - startY) * (this.movePerFrame / seconds);
+
+        this.angle = 0;
+        this.angleChange = angle * (this.movePerFrame / seconds);
+
+        this.counter = 0;
+        this.contiunes = false;
+        this.isPlaying = false;
+        this.loop = false;
+    }
+
     public void Play()
     {
         isPlaying = true;
@@ -108,7 +153,7 @@ public class Animation
 
     public void draw(Canvas canvas)
     {
-        canvas.drawBitmap(frames.get(currentFrame), x, y, null);
+        canvas.drawBitmap(frame, x, y, null);
     }
 
     public void update()
@@ -132,6 +177,8 @@ public class Animation
             }
             x += xChangePerFrame;
             y += yChangePerFrame;
+            angle += angleChange;
+            frame = RotateBitmap(frames.get(currentFrame), angle);
 
             if (xChangePerFrame < 0)
             {
@@ -182,5 +229,12 @@ public class Animation
             }
             lastFrameMove = System.currentTimeMillis();
         }
+    }
+
+    public Bitmap RotateBitmap(Bitmap source, float angle)
+    {
+        Matrix matrix = new Matrix();
+        matrix.postRotate(angle);
+        return Bitmap.createBitmap(source, 0, 0, source.getWidth(), source.getHeight(), matrix, true);
     }
 }
