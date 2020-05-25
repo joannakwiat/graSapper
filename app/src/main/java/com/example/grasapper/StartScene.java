@@ -38,10 +38,10 @@ public class StartScene implements Scene
         background = new Sprite(backgroundImage, 0,0,1080,1794);
         bomb1 = new NavigationButton(context, bombUnlockedImage, 167,933,205, 205, 1);
         text1 = new NavigationTextButton(context,"1",247,975,R.font.a_b,Color.BLACK,97,1020,1);
-        bomb2 = new NavigationButton(context, bombImage, 437,933,205, 205, 1);
-        text2 = new NavigationTextButton(context,"2",517,975,R.font.a_b,Color.WHITE,97,1020,1);
-        bomb3 = new NavigationButton(context, bombImage, 707,933,205, 205, 1);
-        text3 = new NavigationTextButton(context,"3",787,975,R.font.a_b,Color.WHITE,97,1020,1);
+        bomb2 = new NavigationButton(context, bombImage, 437,933,205, 205, 9);
+        text2 = new NavigationTextButton(context,"2",517,975,R.font.a_b,Color.WHITE,97,1020,9);
+        bomb3 = new NavigationButton(context, bombImage, 707,933,205, 205, 10);
+        text3 = new NavigationTextButton(context,"3",787,975,R.font.a_b,Color.WHITE,97,1020,10);
         bomb4 = new NavigationButton(context, bombImage, 167,1198,205, 205, 1);
         text4 = new NavigationTextButton(context,"4",247,1240 ,R.font.a_b,Color.WHITE,97,1020,1);
         bomb5 = new NavigationButton(context, bombImage, 437,1198,205, 205, 1);

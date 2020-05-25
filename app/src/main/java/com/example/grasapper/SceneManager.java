@@ -30,6 +30,8 @@ public class SceneManager
         scanes.add(new Help3Scene(context)); //6
         scanes.add(new StartScene(context)); //7
         scanes.add(new MenuScene2(context)); //8
+        scanes.add(new Gameplay2Scene(context)); //9
+        scanes.add(new Gameplay3Scene(context)); //10
     }
 
     public void update()

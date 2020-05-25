@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.util.Log;
 
+import java.util.ArrayList;
+
 public class Sprite
 {
     //sprite
@@ -59,4 +61,5 @@ public class Sprite
     {
         canvas.drawBitmap( bitmap, x, y, null);
     }
+
 }

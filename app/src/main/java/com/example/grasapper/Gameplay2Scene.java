@@ -1,14 +1,11 @@
 package com.example.grasapper;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Build;
-import android.util.Log;
 import android.view.MotionEvent;
 
 import androidx.annotation.RequiresApi;
@@ -16,14 +13,14 @@ import androidx.annotation.RequiresApi;
 import java.util.ArrayList;
 
 
-public class GameplayScene implements Scene
+public class Gameplay2Scene implements Scene
 {
   // public ArrayList<Integer> kolejka = new ArrayList<>();
    public ArrayList<Bitmap> bitmaps = new ArrayList<>();
    public ArrayList<Sprite> lista = new ArrayList<>();
    public ArrayList<Integer> coordinates = new ArrayList<>();
-   public ArrayList<Bitmap> WinBitmaps = new ArrayList<>();
-   public ArrayList<Sprite> WinArray = new ArrayList<>();
+    public ArrayList<Bitmap> Win2Bitmaps = new ArrayList<>();
+    public ArrayList<Sprite> Win2Array = new ArrayList<>();
 
     Sprite background;
     Sprite blank;
@@ -46,7 +43,7 @@ public class GameplayScene implements Scene
    GameButton replayButton;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
-    public GameplayScene(Context context)
+    public Gameplay2Scene(Context context)
     {
         Bitmap backgroundImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.gameplay_screen);
         Bitmap toMenuButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.manu);
@@ -55,9 +52,9 @@ public class GameplayScene implements Scene
         Bitmap playButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.play);
         Bitmap replayButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.reverse);
         Bitmap listImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.list);
-        Bitmap boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom3);
-        Bitmap WinImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.win3);
+        Bitmap boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom2);
         Bitmap DefeatImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.defeat3);
+        Bitmap WinImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.win3);
 
         //gameButtony - img
         Bitmap img1step = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok1);
@@ -87,7 +84,7 @@ public class GameplayScene implements Scene
         buttonRight = new GameButton(context, imgRight, 690, 1370, 115, 120, 5);
         buttonCut = new GameButton(context, imgCut, 420, 1570, 116, 120, 6);
         buttonFlag = new GameButton(context, imgFlag, 690, 1570, 104, 120, 7);
-        licznik = new Text(context,"0/6", 940, 279, R.font.a_b, Color.WHITE, 57, 1020);
+        licznik = new Text(context,"0/8", 940, 279, R.font.a_b, Color.WHITE, 57, 1020);
 
         bitmaps.add(img1step);
         bitmaps.add(img3step);
@@ -101,11 +98,11 @@ public class GameplayScene implements Scene
 
         for(int i=0; i<10; i++){
             lista.add(blank);
-            WinArray.add(blank);
+            Win2Array.add(blank);
         }
 
-        WinBitmaps.add(WinImage);
-        WinBitmaps.add(DefeatImage);
+        Win2Bitmaps.add(WinImage);
+        Win2Bitmaps.add(DefeatImage);
 
         //x, y
         coordinates.add(970);
@@ -118,16 +115,16 @@ public class GameplayScene implements Scene
         toMenuButton.update();
         toHelpButton.update();
         toCodeButton.update();
-        playButton.update(kolejka,1,WinArray,WinBitmaps);
-        replayButton.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        button1step.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        button3step.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        button4step.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonJump.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonLeft.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonRight.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonCut.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonFlag.update(kolejka,licznik,bitmaps, lista,coordinates,6);
+        playButton.update(kolejka2,2,Win2Array,Win2Bitmaps);
+        replayButton.update(kolejka2,licznik,bitmaps, lista,coordinates,8);
+        button1step.update(kolejka2,licznik,bitmaps, lista,coordinates,8);
+        button3step.update(kolejka2,licznik,bitmaps, lista,coordinates,8);
+        button4step.update(kolejka2,licznik,bitmaps, lista,coordinates,8);
+        buttonJump.update(kolejka2,licznik,bitmaps, lista,coordinates,8);
+        buttonLeft.update(kolejka2,licznik,bitmaps, lista,coordinates,8);
+        buttonRight.update(kolejka2,licznik,bitmaps, lista,coordinates,8);
+        buttonCut.update(kolejka2,licznik,bitmaps, lista,coordinates,8);
+        buttonFlag.update(kolejka2,licznik,bitmaps, lista,coordinates,8);
         licznik.update();
     }
 
@@ -155,7 +152,7 @@ public class GameplayScene implements Scene
         for(int i=0; i<lista.size(); i++){
             lista.get(i).draw(canvas);
         }
-        WinArray.get(0).draw(canvas);
+        Win2Array.get(0).draw(canvas);
     }
 
     @Override
