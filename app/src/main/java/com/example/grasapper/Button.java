@@ -474,6 +474,8 @@ class PlayButton extends Button
                 }
                 if (SceneNumber == 2)//poziom2
                 {
+                    Gameplay2Scene.PLAY = true;
+                    /*
                     if ((kolejka.get(0) == 5) && (kolejka.get(1) == 6) && (kolejka.get(2) == 1) && (kolejka.get(3) == 4) && (kolejka.get(4) == 2) && (kolejka.get(5) == 4) && (kolejka.get(6) == 6) && (kolejka.get(7) == 6)) {
                         pom = new Sprite(bitmaps.get(0), 0, 0, 1080, 1794);
                         toNext.setActive();
@@ -485,6 +487,8 @@ class PlayButton extends Button
                         img.clear();
                         img.add(pom);
                     }
+
+                     */
                 }
                 if (SceneNumber == 3)//poziom3
                 {

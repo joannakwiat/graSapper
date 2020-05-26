@@ -45,6 +45,10 @@ public class Gameplay2Scene implements Scene
     NextLevelButton toNextScene;
     WarringButton toCurrentScene;
 
+    static boolean PLAY;
+    boolean animationPlaying;
+    int action;
+
     @RequiresApi(api = Build.VERSION_CODES.M)
     public Gameplay2Scene(Context context)
     {
@@ -60,6 +64,7 @@ public class Gameplay2Scene implements Scene
         Bitmap WinImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.win3);
         Bitmap WinImageButton = BitmapFactory.decodeResource(context.getResources(),R.drawable.win1);
         Bitmap DefeatImageButton = BitmapFactory.decodeResource(context.getResources(),R.drawable.defeat1);
+
 
         //gameButtony - img
         Bitmap img1step = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok1);
@@ -117,6 +122,10 @@ public class Gameplay2Scene implements Scene
         //x, y
         coordinates.add(970);
         coordinates.add(370);
+
+        PLAY = false;
+        animationPlaying = false;
+        action = 0;
     }
 
     @Override
@@ -196,6 +205,5 @@ public class Gameplay2Scene implements Scene
     {
 
     }
-
 
 }
