@@ -34,6 +34,9 @@ public class SceneManager
         scanes.add(new MenuScene2(context)); //8
         scanes.add(new Gameplay2Scene(context)); //9
         scanes.add(new Gameplay3Scene(context)); //10
+        scanes.add(new Gameplay4Scene(context)); //11
+        scanes.add(new Gameplay5Scene(context)); //12
+        scanes.add(new Gameplay6Scene(context)); //13
         scanes.add(new AnimationTestScene(context));
     }
 

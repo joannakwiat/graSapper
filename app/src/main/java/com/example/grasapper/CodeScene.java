@@ -48,7 +48,6 @@ public class CodeScene implements Scene
     @Override
     public void draw(Canvas canvas)
     {
-        //Log.i("tag", GameplayScene.kolejka.toString());
         background.draw(canvas);
         back.draw(canvas);
         start.draw(canvas);

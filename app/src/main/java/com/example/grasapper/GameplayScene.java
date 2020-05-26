@@ -94,8 +94,8 @@ public class GameplayScene implements Scene
         buttonFlag = new GameButton(context, imgFlag, 690, 1570, 104, 120, 7);
         licznik = new Text(context,"0/6", 940, 279, R.font.a_b, Color.WHITE, 57, 1020);
 
-        toNextScene = new NextLevelButton(context, WinImageButton,  280, 990, 520, 150, 9);
-        toCurrentScene = new WarringButton(context, DefeatImageButton,  280, 990, 520, 150);
+        toNextScene = new NextLevelButton(context, WinImageButton,  265, 950, 550, 223, 9);
+        toCurrentScene = new WarringButton(context, DefeatImageButton,  265, 950, 550, 203);
         toNextScene.setInactive();
         toCurrentScene.setInactive();
 

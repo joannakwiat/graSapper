@@ -500,6 +500,48 @@ class PlayButton extends Button
                         img.add(pom);
                     }
                 }
+                if (SceneNumber == 4)//poziom4
+                {
+                    if ((kolejka.get(0) == 0) && (kolejka.get(1) == 4) && (kolejka.get(2) == 0) && (kolejka.get(3) == 3) && (kolejka.get(4) == 4) && (kolejka.get(5) == 7)) {
+                        pom = new Sprite(bitmaps.get(0), 0, 0, 1080, 1794);
+                        toNext.setActive();
+                        img.clear();
+                        img.add(pom);
+                    } else {
+                        pom = new Sprite(bitmaps.get(1), 0, 0, 1080, 1794);
+                        toCurrent.setActive();
+                        img.clear();
+                        img.add(pom);
+                    }
+                }
+                if (SceneNumber == 5)//poziom5
+                {
+                    if ((kolejka.get(0) == 0) && (kolejka.get(1) == 3) && (kolejka.get(2) == 4) && (kolejka.get(3) == 0) && (kolejka.get(4) == 0) && (kolejka.get(5) == 4) && (kolejka.get(6) == 6) && (kolejka.get(7) == 0) && (kolejka.get(8) == 7)) {
+                        pom = new Sprite(bitmaps.get(0), 0, 0, 1080, 1794);
+                        toNext.setActive();
+                        img.clear();
+                        img.add(pom);
+                    } else {
+                        pom = new Sprite(bitmaps.get(1), 0, 0, 1080, 1794);
+                        toCurrent.setActive();
+                        img.clear();
+                        img.add(pom);
+                    }
+                }
+                if (SceneNumber == 6)//poziom6
+                {
+                    if ((kolejka.get(0) == 4) && (kolejka.get(1) == 2) && (kolejka.get(2) == 5) && (kolejka.get(3) == 1) && (kolejka.get(4) == 3) && (kolejka.get(5) == 1) && (kolejka.get(6) == 5) && (kolejka.get(7) == 0) && (kolejka.get(8) == 0) && (kolejka.get(9) == 7)) {
+                        pom = new Sprite(bitmaps.get(0), 0, 0, 1080, 1794);
+                        toNext.setActive();
+                        img.clear();
+                        img.add(pom);
+                    } else {
+                        pom = new Sprite(bitmaps.get(1), 0, 0, 1080, 1794);
+                        toCurrent.setActive();
+                        img.clear();
+                        img.add(pom);
+                    }
+                }
                 super.update();
             }
         }
