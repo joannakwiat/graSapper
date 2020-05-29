@@ -70,6 +70,7 @@ public class Help2Scene implements Scene
         next.update();
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void draw(Canvas canvas)
     {
@@ -94,13 +95,6 @@ public class Help2Scene implements Scene
         back.reciveTouch(event);
         back2.reciveTouch(event);
         next.reciveTouch(event);
-        switch (event.getAction())
-        {
-            case MotionEvent.ACTION_MOVE:
-            {
-
-            }
-        }
     }
 
     @Override

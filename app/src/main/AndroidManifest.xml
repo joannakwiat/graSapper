@@ -9,10 +9,6 @@
         android:roundIcon="@mipmap/bomba_ikona_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Help"></activity>
-        <activity android:name=".Menu" />
-        <activity android:name=".Okno_kodu" />
-        <activity android:name=".Gra" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

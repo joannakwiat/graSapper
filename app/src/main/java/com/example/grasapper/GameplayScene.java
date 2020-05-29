@@ -1,12 +1,10 @@
 package com.example.grasapper;
 
 import android.content.Context;
-import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
-import android.graphics.Paint;
 import android.os.Build;
 import android.util.Log;
 import android.view.MotionEvent;
@@ -18,12 +16,18 @@ import java.util.ArrayList;
 
 public class GameplayScene implements Scene
 {
-  // public ArrayList<Integer> kolejka = new ArrayList<>();
-   public ArrayList<Bitmap> bitmaps = new ArrayList<>();
-   public ArrayList<Sprite> lista = new ArrayList<>();
-   public ArrayList<Integer> coordinates = new ArrayList<>();
-   public ArrayList<Bitmap> WinBitmaps = new ArrayList<>();
-   public ArrayList<Sprite> WinArray = new ArrayList<>();
+    public static int LEVEL;
+    public static int MAX_NUMBER_OF_MOVES;
+    public int nextLevel;
+
+    public static boolean ACTIVE;
+
+    // public ArrayList<Integer> kolejka = new ArrayList<>();
+    public ArrayList<Bitmap> bitmaps = new ArrayList<>();
+    public ArrayList<Sprite> lista = new ArrayList<>();
+    public ArrayList<Integer> coordinates = new ArrayList<>();
+    public ArrayList<Bitmap> WinBitmaps = new ArrayList<>();
+    public ArrayList<Sprite> WinArray = new ArrayList<>();
 
     Sprite background;
     Sprite blank;
@@ -33,24 +37,31 @@ public class GameplayScene implements Scene
     NavigationButton toCodeButton;
 
     //gameButton
-   GameButton button1step;
-   GameButton button3step;
-   GameButton button4step;
-   GameButton buttonJump;
-   GameButton buttonLeft;
-   GameButton buttonRight;
-   GameButton buttonCut;
-   GameButton buttonFlag;
-   Text licznik;
-   PlayButton playButton;
-   GameButton replayButton;
+    GameButton button1step;
+    GameButton button3step;
+    GameButton button4step;
+    GameButton buttonJump;
+    GameButton buttonLeft;
+    GameButton buttonRight;
+    GameButton buttonCut;
+    GameButton buttonFlag;
+    Text licznik;
+    PlayButton playButton;
+    GameButton replayButton;
 
-   NextLevelButton toNextScene;
-   WarringButton toCurrentScene;
+    NextLevelButton toNextScene;
+    WarringButton toCurrentScene;
+
+    Context con;
+
+    Bitmap boardImage;
+    Bitmap WinImageButton;
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     public GameplayScene(Context context)
     {
+        con = context;
+
         Bitmap backgroundImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.gameplay_screen);
         Bitmap toMenuButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.manu);
         Bitmap toHelpButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.info);
@@ -58,11 +69,11 @@ public class GameplayScene implements Scene
         Bitmap playButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.play);
         Bitmap replayButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.reverse);
         Bitmap listImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.list);
-        Bitmap boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom3);
         Bitmap WinImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.win3);
         Bitmap DefeatImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.defeat3);
-        Bitmap WinImageButton = BitmapFactory.decodeResource(context.getResources(),R.drawable.win1);
+        WinImageButton = BitmapFactory.decodeResource(context.getResources(),R.drawable.win1);
         Bitmap DefeatImageButton = BitmapFactory.decodeResource(context.getResources(),R.drawable.defeat1);
+        boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom1);
 
         //gameButtony - img
         Bitmap img1step = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok1);
@@ -81,7 +92,6 @@ public class GameplayScene implements Scene
         toCodeButton = new NavigationButton(context, toCodeButtonImage, 900, 1500, 194, 294, 4);
         playButton = new PlayButton(context, playButtonImage, 740, 80, 104, 120, false);
         replayButton = new GameButton(context, replayButtonImage, 910, 90, 96, 100, 8);
-        board = new Sprite(boardImage, 30, 110, 854, 1005);
 
         //gameButtony
         button1step = new GameButton(context, img1step, 150, 1170, 100, 120, 0);
@@ -92,9 +102,9 @@ public class GameplayScene implements Scene
         buttonRight = new GameButton(context, imgRight, 690, 1370, 115, 120, 5);
         buttonCut = new GameButton(context, imgCut, 420, 1570, 116, 120, 6);
         buttonFlag = new GameButton(context, imgFlag, 690, 1570, 104, 120, 7);
-        licznik = new Text(context,"0/6", 940, 279, R.font.a_b, Color.WHITE, 57, 1020);
+        licznik = new Text(context,"0/" + MAX_NUMBER_OF_MOVES, 940, 279, R.font.a_b, Color.WHITE, 57, 1020);
 
-        toNextScene = new NextLevelButton(context, WinImageButton,  265, 950, 550, 223, 9);
+        toNextScene = new NextLevelButton(context, WinImageButton,  265, 950, 550, 223, nextLevel);
         toCurrentScene = new WarringButton(context, DefeatImageButton,  265, 950, 550, 203);
         toNextScene.setInactive();
         toCurrentScene.setInactive();
@@ -125,19 +135,20 @@ public class GameplayScene implements Scene
     @Override
     public void update()
     {
+        gameplaySceneActive(con);
         toMenuButton.update();
         toHelpButton.update();
         toCodeButton.update();
-        playButton.update(kolejka,1,WinArray,WinBitmaps, toNextScene, toCurrentScene);
-        replayButton.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        button1step.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        button3step.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        button4step.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonJump.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonLeft.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonRight.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonCut.update(kolejka,licznik,bitmaps, lista,coordinates,6);
-        buttonFlag.update(kolejka,licznik,bitmaps, lista,coordinates,6);
+        playButton.update(kolejka,LEVEL,WinArray,WinBitmaps, toNextScene, toCurrentScene);
+        replayButton.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
+        button1step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
+        button3step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
+        button4step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
+        buttonJump.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
+        buttonLeft.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
+        buttonRight.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
+        buttonCut.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
+        buttonFlag.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
         licznik.update();
         toNextScene.update(WinArray.get(0));
         toCurrentScene.update(WinArray.get(0));
@@ -200,5 +211,86 @@ public class GameplayScene implements Scene
 
     }
 
+    public void gameplaySceneActive(Context context)
+    {
+        if (ACTIVE)
+        {
+            Log.i("KEK", LEVEL + "");
+            ACTIVE = false;
 
+            kolejka.clear();
+            lista.clear();
+
+            for(int i=0; i<10; i++)
+            {
+                lista.add(blank);
+            }
+
+            coordinates.clear();
+            coordinates.add(970);
+            coordinates.add(370);
+
+            licznik.color = Color.WHITE;
+
+            switch (LEVEL)
+            {
+                case 1:
+                {
+                    boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom3);
+                    board = new Sprite(boardImage, 30, 110, 854, 1005);
+                    MAX_NUMBER_OF_MOVES = 6;
+                    licznik.text = "0/" + MAX_NUMBER_OF_MOVES;
+                    nextLevel = 2;
+                    break;
+                }
+                case 2:
+                {
+                    boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom2);
+                    board = new Sprite(boardImage, 30, 110, 854, 1005);
+                    MAX_NUMBER_OF_MOVES = 8;
+                    licznik.text = "0/" + MAX_NUMBER_OF_MOVES;
+                    nextLevel = 3;
+                    break;
+                }
+                case 3:
+                {
+                    boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom1);
+                    board = new Sprite(boardImage, 30, 110, 854, 1005);
+                    MAX_NUMBER_OF_MOVES = 6;
+                    licznik.text = "0/" + MAX_NUMBER_OF_MOVES;
+                    nextLevel = 4;
+                    break;
+                }
+                case 4:
+                {
+                    boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom4);
+                    board = new Sprite(boardImage, 30, 110, 854, 1005);
+                    MAX_NUMBER_OF_MOVES = 6;
+                    licznik.text = "0/" + MAX_NUMBER_OF_MOVES;
+                    nextLevel = 5;
+                    break;
+                }
+                case 5:
+                {
+                    boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom5);
+                    board = new Sprite(boardImage, 30, 110, 854, 1005);
+                    MAX_NUMBER_OF_MOVES = 9;
+                    licznik.text = "0/" + MAX_NUMBER_OF_MOVES;
+                    nextLevel = 6;
+                    break;
+                }
+                case 6:
+                {
+                    boardImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.poziom6);
+                    board = new Sprite(boardImage, 30, 110, 854, 1005);
+                    MAX_NUMBER_OF_MOVES = 10;
+                    licznik.text = "0/" + MAX_NUMBER_OF_MOVES;
+                    nextLevel = 1;
+                    break;
+                }
+            }
+            toNextScene = new NextLevelButton(context, WinImageButton,  265, 950, 550, 223, nextLevel);
+            toNextScene.setInactive();
+        }
+    }
 }

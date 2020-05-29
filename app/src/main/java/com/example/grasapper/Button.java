@@ -3,6 +3,7 @@ package com.example.grasapper;
 import android.content.Context;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
@@ -10,7 +11,6 @@ import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
 import android.view.MotionEvent;
-import android.widget.Toast;
 import android.util.Log;
 
 import java.util.ArrayList;
@@ -221,6 +221,43 @@ class NavigationButton extends Button
             if (clicked) {
                 SceneManager.PREVIOUSE_SCENE = SceneManager.ACTIVE_SCANE;
                 SceneManager.ACTIVE_SCANE = numberOfScene;
+                super.update();
+            }
+        }
+    }
+}
+
+class LevelButton extends NavigationButton
+{
+    int numberOfLevel;
+    Bitmap boardImage;
+
+    LevelButton()
+    {
+
+    }
+
+    LevelButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int sceneNumber, int levelNumber)
+    {
+        super(context, bitmap, x, y, width, height, sceneNumber);
+        numberOfLevel = levelNumber;
+
+    }
+
+    LevelButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int sceneNumber, int changeActiveMusic,  int levelNumber)
+    {
+        super(context,bitmap,x,y,width,height, sceneNumber, changeActiveMusic);
+        numberOfLevel = levelNumber;
+
+    }
+
+    public void update()
+    {
+        if (active)
+        {
+            if (clicked) {
+                GameplayScene.LEVEL = numberOfLevel;
+                GameplayScene.ACTIVE = true;
                 super.update();
             }
         }
@@ -474,8 +511,6 @@ class PlayButton extends Button
                 }
                 if (SceneNumber == 2)//poziom2
                 {
-                    Gameplay2Scene.PLAY = true;
-                    /*
                     if ((kolejka.get(0) == 5) && (kolejka.get(1) == 6) && (kolejka.get(2) == 1) && (kolejka.get(3) == 4) && (kolejka.get(4) == 2) && (kolejka.get(5) == 4) && (kolejka.get(6) == 6) && (kolejka.get(7) == 6)) {
                         pom = new Sprite(bitmaps.get(0), 0, 0, 1080, 1794);
                         toNext.setActive();
@@ -487,8 +522,6 @@ class PlayButton extends Button
                         img.clear();
                         img.add(pom);
                     }
-
-                     */
                 }
                 if (SceneNumber == 3)//poziom3
                 {
@@ -576,7 +609,8 @@ class NextLevelButton extends Button
                 super.update();
                 active = false;
                 sprite.setInactive();
-                SceneManager.ACTIVE_SCANE = nextLevel;
+                GameplayScene.LEVEL = nextLevel;
+                GameplayScene.ACTIVE = true;
             }
         }
     }
