@@ -11,7 +11,10 @@ import android.view.MotionEvent;
 
 import androidx.annotation.RequiresApi;
 
+import java.io.*;
 import java.util.ArrayList;
+
+
 
 
 public class GameplayScene implements Scene
@@ -19,6 +22,7 @@ public class GameplayScene implements Scene
     public static int LEVEL;
     public static int MAX_NUMBER_OF_MOVES;
     public int nextLevel;
+
 
     public static boolean ACTIVE;
 
@@ -139,7 +143,7 @@ public class GameplayScene implements Scene
         toMenuButton.update();
         toHelpButton.update();
         toCodeButton.update();
-        playButton.update(kolejka,LEVEL,WinArray,WinBitmaps, toNextScene, toCurrentScene);
+        playButton.update(con,kolejka,LEVEL,WinArray,WinBitmaps, toNextScene, toCurrentScene);
         replayButton.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
         button1step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
         button3step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);

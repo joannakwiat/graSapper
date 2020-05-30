@@ -22,7 +22,6 @@ public class CodeScene implements Scene
     Sprite cut;
     Sprite rozbroj;
     BackButton back;
-
     public CodeScene(Context context)
     {
         Bitmap backgroundImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.code_screen);

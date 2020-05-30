@@ -10,9 +10,12 @@ import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
+import android.view.Menu;
 import android.view.MotionEvent;
 import android.util.Log;
 
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 public class Button
@@ -241,7 +244,6 @@ class LevelButton extends NavigationButton
     {
         super(context, bitmap, x, y, width, height, sceneNumber);
         numberOfLevel = levelNumber;
-
     }
 
     LevelButton (Context context, Bitmap bitmap, int x, int y, int width, int height, int sceneNumber, int changeActiveMusic,  int levelNumber)
@@ -468,31 +470,25 @@ class GameButton extends Button
     }
 }
 
-class PlayButton extends Button
-{
+class PlayButton extends Button {
     boolean isRepley;
 
-    PlayButton()
-    {
+    PlayButton() {
 
     }
 
-    PlayButton (Context context, Bitmap bitmap, int x, int y, int width, int height, boolean isRepley)
-    {
-        super(context,bitmap,x,y,width,height);
+    PlayButton(Context context, Bitmap bitmap, int x, int y, int width, int height, boolean isRepley) {
+        super(context, bitmap, x, y, width, height);
         this.isRepley = isRepley;
     }
 
-    PlayButton (Context context, Bitmap bitmap, int x, int y, int width, int height, boolean isRepley, int changeActiveMusic)
-    {
-        super(context,bitmap,x,y,width,height,changeActiveMusic);
+    PlayButton(Context context, Bitmap bitmap, int x, int y, int width, int height, boolean isRepley, int changeActiveMusic) {
+        super(context, bitmap, x, y, width, height, changeActiveMusic);
         this.isRepley = isRepley;
     }
 
-    public void update(ArrayList<Integer> kolejka, int SceneNumber, ArrayList<Sprite> img, ArrayList<Bitmap> bitmaps, Button toNext, Button toCurrent)
-    {
-        if (active)
-        {
+    public void update(Context context, ArrayList<Integer> kolejka, int SceneNumber, ArrayList<Sprite> img, ArrayList<Bitmap> bitmaps, Button toNext, Button toCurrent) {
+        if (active) {
             Sprite pom;
             if (clicked) {
                 if (SceneNumber == 1)//poziom1
@@ -502,6 +498,25 @@ class PlayButton extends Button
                         toNext.setActive();
                         img.clear();
                         img.add(pom);
+                        if (StartScene.savelevelbomb < 2) {
+                            StartScene.savelevel = "2";
+                            StartScene.savelevelbomb = 2;
+                            try {
+                                OutputStreamWriter outputStreamWriter1 = new OutputStreamWriter(context.openFileOutput("save.txt", Context.MODE_PRIVATE));
+                                outputStreamWriter1.write("2");
+                                outputStreamWriter1.close();
+                                Log.i("SAVE", StartScene.savelevel);
+                            } catch (IOException e) {
+                                Log.i("Exception", e.toString());
+                            }
+                            Bitmap bombUnlockedImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.bomb_takiczerwony);
+                            LevelButton bomb2x = new LevelButton(context, bombUnlockedImage, 437,933,205, 205, 1,2);
+                            StartScene.bomb2=bomb2x;
+                            Text text2x= new Text(context,"2",517,975,R.font.a_b,Color.BLACK,97,1020);
+                            StartScene.text2=text2x;
+                        }
+
+
                     } else {
                         pom = new Sprite(bitmaps.get(1), 0, 0, 1080, 1794);
                         toCurrent.setActive();
@@ -516,6 +531,23 @@ class PlayButton extends Button
                         toNext.setActive();
                         img.clear();
                         img.add(pom);
+                        if (StartScene.savelevelbomb < 3) {
+                            StartScene.savelevel = "3";
+                            StartScene.savelevelbomb = 3;
+                            try {
+                                OutputStreamWriter outputStreamWriter1 = new OutputStreamWriter(context.openFileOutput("save.txt", Context.MODE_PRIVATE));
+                                outputStreamWriter1.write("3");
+                                outputStreamWriter1.close();
+                                Log.i("SAVE", StartScene.savelevel);
+                            } catch (IOException e) {
+                                Log.i("Exception", e.toString());
+                            }
+                            Bitmap bombUnlockedImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.bomb_takiczerwony);
+                            LevelButton bomb3x = new LevelButton(context, bombUnlockedImage, 707, 933, 205, 205, 1, 3);
+                            StartScene.bomb3=bomb3x;
+                            Text text3x = new Text(context, "3", 787, 975, R.font.a_b, Color.BLACK, 97, 1020);
+                            StartScene.text3=text3x;
+                        }
                     } else {
                         pom = new Sprite(bitmaps.get(1), 0, 0, 1080, 1794);
                         toCurrent.setActive();
@@ -530,12 +562,31 @@ class PlayButton extends Button
                         toNext.setActive();
                         img.clear();
                         img.add(pom);
+                        if (StartScene.savelevelbomb < 4) {
+                            StartScene.savelevel = "4";
+                            StartScene.savelevelbomb = 4;
+                            try {
+                                OutputStreamWriter outputStreamWriter1 = new OutputStreamWriter(context.openFileOutput("save.txt", Context.MODE_PRIVATE));
+                                outputStreamWriter1.write("4");
+                                outputStreamWriter1.close();
+                                Log.i("SAVE", StartScene.savelevel);
+                            } catch (IOException e) {
+                                Log.i("Exception", e.toString());
+                            }
+                            Bitmap bombUnlockedImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.bomb_takiczerwony);
+                            LevelButton bomb4x = new LevelButton(context, bombUnlockedImage, 167,1198,205, 205, 1,4);
+                            StartScene.bomb4=bomb4x;
+                            Text text4x=new Text(context,"4",247,1240 ,R.font.a_b,Color.BLACK,97,1020);
+                            StartScene.text4=text4x;
+
+                        }
                     } else {
                         pom = new Sprite(bitmaps.get(1), 0, 0, 1080, 1794);
                         toCurrent.setActive();
                         img.clear();
                         img.add(pom);
                     }
+
                 }
                 if (SceneNumber == 4)//poziom4
                 {
@@ -544,6 +595,23 @@ class PlayButton extends Button
                         toNext.setActive();
                         img.clear();
                         img.add(pom);
+                        if (StartScene.savelevelbomb < 5) {
+                            StartScene.savelevel = "5";
+                            StartScene.savelevelbomb = 5;
+                            try {
+                                OutputStreamWriter outputStreamWriter1 = new OutputStreamWriter(context.openFileOutput("save.txt", Context.MODE_PRIVATE));
+                                outputStreamWriter1.write("5");
+                                outputStreamWriter1.close();
+                                Log.i("SAVE", StartScene.savelevel);
+                            } catch (IOException e) {
+                                Log.i("Exception", e.toString());
+                            }
+                            Bitmap bombUnlockedImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.bomb_takiczerwony);
+                            LevelButton bomb5x = new LevelButton(context, bombUnlockedImage, 437,1198,205, 205, 1,5);
+                            StartScene.bomb5=bomb5x;
+                            Text text5x = new Text(context,"5",517,1240 ,R.font.a_b,Color.BLACK,97,1020);
+                            StartScene.text5=text5x;
+                        }
                     } else {
                         pom = new Sprite(bitmaps.get(1), 0, 0, 1080, 1794);
                         toCurrent.setActive();
@@ -558,6 +626,24 @@ class PlayButton extends Button
                         toNext.setActive();
                         img.clear();
                         img.add(pom);
+                        if (StartScene.savelevelbomb < 6) {
+                            StartScene.savelevel = "6";
+                            StartScene.savelevelbomb = 6;
+                            try {
+                                OutputStreamWriter outputStreamWriter1 = new OutputStreamWriter(context.openFileOutput("save.txt", Context.MODE_PRIVATE));
+                                outputStreamWriter1.write("6");
+                                outputStreamWriter1.close();
+                                Log.i("SAVE", StartScene.savelevel);
+                            } catch (IOException e) {
+                                Log.i("Exception", e.toString());
+                            }
+                            Bitmap bombUnlockedImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.bomb_takiczerwony);
+                            LevelButton bomb6x = new LevelButton(context, bombUnlockedImage, 707,1198,205, 205, 1,6);
+                            StartScene.bomb6=bomb6x;
+                            Text text6x= new Text(context,"6",787,1240 ,R.font.a_b,Color.BLACK,97,1020);
+                            StartScene.text6=text6x;
+
+                        }
                     } else {
                         pom = new Sprite(bitmaps.get(1), 0, 0, 1080, 1794);
                         toCurrent.setActive();
