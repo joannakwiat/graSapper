@@ -10,9 +10,12 @@ import android.graphics.ColorFilter;
 import android.graphics.LightingColorFilter;
 import android.graphics.Paint;
 import android.media.MediaPlayer;
+import android.os.Build;
 import android.view.Menu;
 import android.view.MotionEvent;
 import android.util.Log;
+
+import androidx.annotation.RequiresApi;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -348,7 +351,7 @@ class GameButton extends Button
 
     }
 
-    public void update(ArrayList<Integer> kolejka, Text text, ArrayList<Bitmap> bitmaps, ArrayList<Sprite> lista, ArrayList<Integer> coor, int MaxIloscRuchow)
+    public void update(ArrayList<Integer> kolejka, Text text, ArrayList<Bitmap> bitmaps, ArrayList<Sprite> lista, ArrayList<Integer> coor, int MaxIloscRuchow, Context context)
     {
         if (active)
         {
@@ -362,9 +365,18 @@ class GameButton extends Button
                     Log.i("Clicked", "RESET");
                     kolejka.clear();
                     lista.clear();
-                    for (int i = 0; i < 10; i++) {
+                    CodeScene.codeList.clear();
+                    int codeX = 290;
+                    int codeY = 290;
+                    Bitmap codeBlank = BitmapFactory.decodeResource(context.getResources(),R.drawable.blank);
+                    for (int i = 0; i < 11; i++) {
                         lista.add(blank);
+                        Sprite blankSprite = new Sprite(codeBlank, codeX,codeY,500,90);
+                        CodeScene.codeList.add(blankSprite);
+                        codeY += 90;
                     }
+                    Bitmap startImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.start);
+                    CodeScene.codeList.set(0, new Sprite(startImage, 290,290, 500, 90));
                     coor.clear();
                     coor.add(970);
                     coor.add(370);
@@ -378,6 +390,8 @@ class GameButton extends Button
                         Log.i("size kolejki", text.text);
                         Log.i("Clicked", "0");
                         kolejka.add(0);
+                        Bitmap krok1Image = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok_1);
+                        CodeScene.codeList.set(kolejka.size(), new Sprite(krok1Image, CodeScene.codeList.get(kolejka.size()).x, CodeScene.codeList.get(kolejka.size()).y, 500,90));
                         pom = new Sprite(bitmaps.get(0), x, y, bitmaps.get(0).getWidth() / 4, bitmaps.get(0).getHeight() / 4);
                         lista.add(pom);
                         Log.i("list", kolejka.toString());
@@ -389,6 +403,8 @@ class GameButton extends Button
                         //3step
                         Log.i("Clicked", "1");
                         kolejka.add(1);
+                        Bitmap krok3Image = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok_3);
+                        CodeScene.codeList.set(kolejka.size(), new Sprite(krok3Image, CodeScene.codeList.get(kolejka.size()).x, CodeScene.codeList.get(kolejka.size()).y, 500,90));
                         pom = new Sprite(bitmaps.get(1), x, y, bitmaps.get(1).getWidth() / 4, bitmaps.get(1).getHeight() / 4);
                         lista.add(pom);
                         Log.i("list", kolejka.toString());
@@ -400,6 +416,8 @@ class GameButton extends Button
                         //4step
                         Log.i("Clicked", "2");
                         kolejka.add(2);
+                        Bitmap krok4Image = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok_4);
+                        CodeScene.codeList.set(kolejka.size(), new Sprite(krok4Image, CodeScene.codeList.get(kolejka.size()).x, CodeScene.codeList.get(kolejka.size()).y, 500,90));
                         pom = new Sprite(bitmaps.get(2), x, y, bitmaps.get(2).getWidth() / 4, bitmaps.get(2).getHeight() / 4);
                         lista.add(pom);
                         Log.i("list", kolejka.toString());
@@ -411,6 +429,8 @@ class GameButton extends Button
                         //jump
                         Log.i("Clicked", "3");
                         kolejka.add(3);
+                        Bitmap skokImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.skok);
+                        CodeScene.codeList.set(kolejka.size(), new Sprite(skokImage, CodeScene.codeList.get(kolejka.size()).x, CodeScene.codeList.get(kolejka.size()).y, 200,90));
                         pom = new Sprite(bitmaps.get(3), x, y, bitmaps.get(3).getWidth() / 5, bitmaps.get(3).getHeight() / 5);
                         lista.add(pom);
                         Log.i("list", kolejka.toString());
@@ -422,6 +442,8 @@ class GameButton extends Button
                         //left
                         Log.i("Clicked", "4");
                         kolejka.add(4);
+                        Bitmap lewoImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.lewo);
+                        CodeScene.codeList.set(kolejka.size(), new Sprite(lewoImage, CodeScene.codeList.get(kolejka.size()).x, CodeScene.codeList.get(kolejka.size()).y, 500,90));
                         pom = new Sprite(bitmaps.get(4), x, y, bitmaps.get(4).getWidth() / 5, bitmaps.get(4).getHeight() / 5);
                         lista.add(pom);
                         Log.i("list", kolejka.toString());
@@ -433,6 +455,8 @@ class GameButton extends Button
                         //right
                         Log.i("Clicked", "5");
                         kolejka.add(5);
+                        Bitmap prawoImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.prawo);
+                        CodeScene.codeList.set(kolejka.size(), new Sprite(prawoImage, CodeScene.codeList.get(kolejka.size()).x, CodeScene.codeList.get(kolejka.size()).y, 500,90));
                         pom = new Sprite(bitmaps.get(5), x, y, bitmaps.get(5).getWidth() / 5, bitmaps.get(5).getHeight() / 5);
                         lista.add(pom);
                         Log.i("list", kolejka.toString());
@@ -444,6 +468,8 @@ class GameButton extends Button
                         //cut
                         Log.i("Clicked", "6");
                         kolejka.add(6);
+                        Bitmap cutImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.kabel);
+                        CodeScene.codeList.set(kolejka.size(), new Sprite(cutImage, CodeScene.codeList.get(kolejka.size()).x, CodeScene.codeList.get(kolejka.size()).y, 500,90));
                         pom = new Sprite(bitmaps.get(6), x, y, bitmaps.get(6).getWidth() / 4, bitmaps.get(6).getHeight() / 4);
                         lista.add(pom);
                         Log.i("list", kolejka.toString());
@@ -455,6 +481,8 @@ class GameButton extends Button
                         //flag
                         Log.i("Clicked", "7");
                         kolejka.add(7);
+                        Bitmap rozbrojImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.rozbroj);
+                        CodeScene.codeList.set(kolejka.size(), new Sprite(rozbrojImage, CodeScene.codeList.get(kolejka.size()).x, CodeScene.codeList.get(kolejka.size()).y, 300,90));
                         pom = new Sprite(bitmaps.get(7), x, y, bitmaps.get(7).getWidth() / 4, bitmaps.get(7).getHeight() / 4);
                         lista.add(pom);
                         Log.i("list", kolejka.toString());
@@ -487,6 +515,7 @@ class PlayButton extends Button {
         this.isRepley = isRepley;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     public void update(Context context, ArrayList<Integer> kolejka, int SceneNumber, ArrayList<Sprite> img, ArrayList<Bitmap> bitmaps, Button toNext, Button toCurrent) {
         if (active) {
             Sprite pom;
@@ -562,7 +591,8 @@ class PlayButton extends Button {
                         toNext.setActive();
                         img.clear();
                         img.add(pom);
-                        if (StartScene.savelevelbomb < 4) {
+                        if (StartScene.savelevelbomb < 4)
+                        {
                             StartScene.savelevel = "4";
                             StartScene.savelevelbomb = 4;
                             try {

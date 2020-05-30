@@ -11,6 +11,8 @@ import java.util.ArrayList;
 
 public class CodeScene implements Scene
 {
+    public static ArrayList<Sprite> codeList = new ArrayList<>();
+
     Sprite background;
     Sprite start;
     Sprite krok1;
@@ -27,18 +29,21 @@ public class CodeScene implements Scene
         Bitmap backgroundImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.code_screen);
         Bitmap backImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.back);
         Bitmap startImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.start);
-        Bitmap krok1Image = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok_1);
-        Bitmap krok3Image = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok_3);
-        Bitmap krok4Image = BitmapFactory.decodeResource(context.getResources(),R.drawable.krok_4);
-        Bitmap lewoImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.lewo);
-        Bitmap prawoImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.prawo);
-        Bitmap skokImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.skok);
-        Bitmap cutImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.kabel);
-        Bitmap rozbrojImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.rozbroj);
+        Bitmap blank = BitmapFactory.decodeResource(context.getResources(),R.drawable.blank);
 
         background = new Sprite(backgroundImage, 0,0,1080,1794);
         back = new BackButton(context, backImage, 80,80,61, 105);
-        start = new Sprite(startImage, 290,290, startImage.getWidth()/2, startImage.getHeight()/2);
+        start = new Sprite(startImage, 290,290, 500, 90);
+
+        codeList.add(start);
+        int x = 290;
+        int y = 380;
+        for (int i = 1; i < 11; i++)
+        {
+            Sprite blankSprite = new Sprite(blank, x,y,500,90);
+            codeList.add(blankSprite);
+            y += 90;
+        }
     }
 
     @Override
@@ -49,9 +54,10 @@ public class CodeScene implements Scene
     {
         background.draw(canvas);
         back.draw(canvas);
-        start.draw(canvas);
-        krok1.draw(canvas);
-        krok3.draw(canvas);
+        for (int i = 0; i < GameplayScene.kolejka.size() + 1; i++)
+        {
+            codeList.get(i).draw(canvas);
+        }
     }
 
     @Override

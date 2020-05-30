@@ -72,7 +72,7 @@ public class GameplayScene implements Scene
         Bitmap toCodeButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.code);
         Bitmap playButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.play);
         Bitmap replayButtonImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.reverse);
-        Bitmap listImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.list);
+        Bitmap listImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.blank);
         Bitmap WinImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.win3);
         Bitmap DefeatImage = BitmapFactory.decodeResource(context.getResources(),R.drawable.defeat3);
         WinImageButton = BitmapFactory.decodeResource(context.getResources(),R.drawable.win1);
@@ -136,6 +136,7 @@ public class GameplayScene implements Scene
         coordinates.add(370);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.M)
     @Override
     public void update()
     {
@@ -144,15 +145,15 @@ public class GameplayScene implements Scene
         toHelpButton.update();
         toCodeButton.update();
         playButton.update(con,kolejka,LEVEL,WinArray,WinBitmaps, toNextScene, toCurrentScene);
-        replayButton.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
-        button1step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
-        button3step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
-        button4step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
-        buttonJump.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
-        buttonLeft.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
-        buttonRight.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
-        buttonCut.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
-        buttonFlag.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES);
+        replayButton.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES, con);
+        button1step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES, con);
+        button3step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES, con);
+        button4step.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES, con);
+        buttonJump.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES, con);
+        buttonLeft.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES, con);
+        buttonRight.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES, con);
+        buttonCut.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES, con);
+        buttonFlag.update(kolejka,licznik,bitmaps, lista,coordinates, MAX_NUMBER_OF_MOVES, con);
         licznik.update();
         toNextScene.update(WinArray.get(0));
         toCurrentScene.update(WinArray.get(0));

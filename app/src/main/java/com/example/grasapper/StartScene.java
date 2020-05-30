@@ -181,13 +181,13 @@ public class StartScene implements Scene
     {
         bomb1.reciveTouch(event);
         if(savelevelbomb>=2)
-        bomb2.reciveTouch(event);
+            bomb2.reciveTouch(event);
         if(savelevelbomb>=3)
-        bomb3.reciveTouch(event);
+            bomb3.reciveTouch(event);
         if(savelevelbomb>=4)
-        bomb4.reciveTouch(event);
+            bomb4.reciveTouch(event);
         if(savelevelbomb>=5)
-        bomb5.reciveTouch(event);
+            bomb5.reciveTouch(event);
         if(savelevelbomb>=6)
             bomb6.reciveTouch(event);
         manu.reciveTouch(event);
