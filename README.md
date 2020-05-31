@@ -7,4 +7,4 @@ Na planszy będą umieszczone bomby, które będziesz miał za zadanie rozbroić
 
 |![screenshot](https://i.imgur.com/rsWEJup.png)|![screenshot](https://i.imgur.com/FTnPnrf.png)|
 |--|--|
-|![screenshot](https://i.imgur.com/LjR4LY9.png)|![screenshot](https://i.imgur.com/2b7LDL5.png)|
+|![screenshot](https://i.imgur.com/LjR4LY9.png)|![screenshot](https://i.imgur.com/YCN34Ib.png)|
